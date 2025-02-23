@@ -61,6 +61,37 @@ function TestimonialSection() {
   );
 }
 
+function GitLog() {
+  const commits = [
+    { hash: "f3a12b1", message: "Started as a mechanical engineer. Thought gears were cool." },
+    { hash: "c7d9e45", message: "Discovered coding. Wrote my first 'Hello, World!'" },
+    { hash: "a8f29d2", message: "Left engineering. Entered full-stack development. No regrets." },
+    { hash: "91c5e77", message: "First web app deployed. It worked… mostly." },
+    { hash: "b4e83f6", message: "Realized debugging is 90% of development." },
+    { hash: "d2a7f98", message: "Started writing blogs. Explained things I learned 5 min ago." },
+    { hash: "34f1a21", message: "Learned about TypeScript. Still using //@ts-ignore." },
+    { hash: "72c6a19", message: "Built projects, broke things, fixed them, repeated cycle." },
+    { hash: "f17c91b", message: "Exploring AI & Web3. What could go wrong?" },
+    { hash: "e39d7b0", message: "Writing, building, and still debugging life." },
+    { hash: "0a1c2b3", message: "Ongoing: Always learning, always coding, always curious." },
+  ];
+
+  return (
+    <div className="bg-gray-900 text-white font-mono p-6 rounded-lg">
+      <h2 className="text-xl font-bold mb-4">Career Progression (Git Log)</h2>
+      <div className="border-l-4 border-gray-700 pl-4">
+        {commits.map((commit, index) => (
+          <p key={index} className="mb-2">
+            <span className="text-green-400">{commit.hash}</span> - {commit.message}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
 export default function Chinfo() {
   const [activeTab, setActiveTab] = useState<"recruiter" | "everyone">(
     "recruiter"
@@ -117,6 +148,8 @@ It’s been a fun journey moving into dev. Read the full story `,
             </div>
           </div>
         </section>
+
+        <GitLog/>
 
         {/* Expertise Section */}
         <section className="mb-16">
