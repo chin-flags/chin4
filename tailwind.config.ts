@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
     darkMode: ["class"],
@@ -9,6 +10,11 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			unkempt: ["var(--font-unkempt)"],
+			chewy: ["var(--font-chewy)"],
+			jost: ["var(--font-jost)"],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -51,6 +57,20 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+		keyframes: {
+			'animate-rigth': {
+				'0%, 100%': {
+					transform: 'translateX(-25%)'
+				  },
+				  '50%': {
+					transform: 'none',
+					'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1)'
+				  }
+			}
+		},
+		animation: {
+			'bounce-right': 'animate-right 0.5s ease-in-out'
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -58,5 +78,5 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
