@@ -54,12 +54,12 @@ export default function Experience() {
           >
             <div>
               <div className="flex justify-between items-start mb-1">
-                <h3 className="text-2xl text-foreground group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-md sm:text-2xl text-foreground group-hover:text-primary transition-colors duration-300">
                   {experience.title}
                 </h3>
               </div>
               {experience.company && (
-                <p className="text-md text-muted-foreground mb-1">
+                <p className="text-sm sm:text-md text-muted-foreground mb-1">
                   {experience.companyLink ? (
                     <a 
                       href={experience.companyLink}
@@ -90,12 +90,12 @@ export default function Experience() {
                   )}
                 </p>
               )}
-              <p className="text-sm text-muted-foreground mb-3">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-3">
                 {experience.period}
               </p>
               <ul className="space-y-2">
                 {experience.description.map((item, idx) => (
-                  <li key={idx} className="text-muted-foreground text-lg leading-relaxed">
+                  <li key={idx} className="text-muted-foreground text-sm sm:text-md leading-relaxed">
                     • {item}
                   </li>
                 ))}

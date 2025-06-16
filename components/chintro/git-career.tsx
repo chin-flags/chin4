@@ -386,7 +386,7 @@ export default function GitCareer() {
       {/* Terminal Content */}
       <div className="bg-surface-tertiary text-success p-2 sm:p-4">
         {/* Command Line Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4">
+        <div className="flex flex-col text-sm sm:text-base sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4">
           <div className="flex items-center gap-2">
             <span className="text-info font-bold text-sm sm:text-base">~/life-story</span>
             <span className="text-text-tertiary">(</span>

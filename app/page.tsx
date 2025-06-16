@@ -23,7 +23,7 @@ export default function Home() {
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-4 sm:p-8 pt-0 pb-12 sm:pb-20 gap-8 sm:gap-16 font-[family-name:var(--font-geist-sans)]  text-foreground transition-colors duration-300">
+    <div className="flex flex-col items-center min-h-screen p-0 sm:p-8 pt-0 pb-12 sm:pb-20 gap-8 sm:gap-16 font-[family-name:var(--font-geist-sans)]  text-foreground transition-colors duration-300">
       <TitleMessage messages={messages} />
 
       <main className="flex flex-col -mt-20 items-center justify-center w-full h-screen max-w-6xl mx-auto">
@@ -72,11 +72,11 @@ export default function Home() {
             delay={1.2}
             initialY={10}
             shouldAnimate={shouldAnimate}
-            className="text-base sm:text-xl italic font-bold mt-4 px-2 sm:px-4 max-w-[500px] leading-tight text-center text-text-secondary"
+            className="text-sm sm:text-2xl italic font-bold mt-4 px-2 sm:px-4 max-w-[600px] leading-tight text-center text-text-secondary"
             initialOpacity={0}
           >
             codes, writes and says
-            <span className="font-mono text-base sm:text-xl ml-2 text-success not-italic opacity-70 block sm:inline">{`//hacky but works`}</span>
+            <span className="font-mono text-sm sm:text-2xl ml-2 text-success not-italic opacity-70 block sm:inline">{`//hacky but works`}</span>
           </MotionText>
         </div>
       </main>

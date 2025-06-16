@@ -16,10 +16,10 @@ export const metadata: Metadata = {
   description: 'Chin\'s personal website',
   metadataBase: new URL('https://chin4.com'), // Important for absolute URLs
   openGraph: {
-    title: 'My Awesome Next.js App',
-    description: 'The best app ever built with Next.js',
-    url: 'https://yourwebsite.com',
-    siteName: 'My Awesome App',
+    title: 'Chin4',
+    description: 'Chin\'s personal website',
+    url: 'https://chin4.com',
+    siteName: 'Chin4',
     images: [
       {
         url: '/chin-og.png',
@@ -30,12 +30,6 @@ export const metadata: Metadata = {
     ],
     locale: 'en_US',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'My Awesome Next.js App',
-    description: 'The best app ever built with Next.js',
-    images: ['/twitter-image.jpg'],
   },
 };
 
