@@ -44,10 +44,10 @@ export default function GoodAt() {
             className="group flex items-start gap-1 p-3 hover:bg-accent/5 rounded-lg transition-colors duration-300"
           >
             <div>
-              <h3 className="text-2xl text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-lg sm:text-xl text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
                 {skill.title}
               </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <p className="text-muted-foreground text-md sm:text-lg leading-relaxed">
                 {skill.description}
               </p>
             </div>

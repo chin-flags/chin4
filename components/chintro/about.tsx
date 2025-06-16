@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function About() {
   return (
     <section className="mb-16">
-      <div className="text-sm sm:text-xl text-foreground text-justify space-y-4">
+      <div className="text-md sm:text-lg text-foreground text-justify space-y-4">
         <p>
           The most challenging question in an interview isn&apos;t about
           algorithms it&apos;s &quot;Tell me about yourself.&quot;

@@ -6,7 +6,7 @@ export default function Experience() {
       companyLink: "https://consensys.io",
       period: "Oct 2024 – Present",
       description: [
-        "Helped developers navigate the Delegation Toolkit – from answering 'How do I?' to 'Why isn't this working?'",
+        "Helped developers navigate the Delegation Toolkit from answering 'How do I?' to 'Why isn't this working?'",
         "Built a CLI tool and example repos – because if you can't make it easy, why bother?",
         "Hosted livestreams, workshops, and hackathons – keeping the community curious and engaged.",
         "Worked closely with the engineering team to suggest SDK improvements and smooth out the rough edges."
@@ -90,12 +90,12 @@ export default function Experience() {
                   )}
                 </p>
               )}
-              <p className="text-xs sm:text-sm text-muted-foreground mb-3">
+              <p className="text-md sm:text-lg text-muted-foreground mb-3">
                 {experience.period}
               </p>
               <ul className="space-y-2">
                 {experience.description.map((item, idx) => (
-                  <li key={idx} className="text-muted-foreground text-sm sm:text-md leading-relaxed">
+                  <li key={idx} className="text-muted-foreground text-md sm:text-lg leading-relaxed">
                     • {item}
                   </li>
                 ))}
