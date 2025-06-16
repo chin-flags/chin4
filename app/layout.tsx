@@ -12,8 +12,31 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Chin4",
-  description: "Chin4 personal website",
+  title: 'Chin4',
+  description: 'Chin\'s personal website',
+  metadataBase: new URL('https://chin4.com'), // Important for absolute URLs
+  openGraph: {
+    title: 'My Awesome Next.js App',
+    description: 'The best app ever built with Next.js',
+    url: 'https://yourwebsite.com',
+    siteName: 'My Awesome App',
+    images: [
+      {
+        url: '/chin-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'My Awesome App Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'My Awesome Next.js App',
+    description: 'The best app ever built with Next.js',
+    images: ['/twitter-image.jpg'],
+  },
 };
 
 export default function RootLayout({
