@@ -1,0 +1,112 @@
+---
+title: "Ethereum Dapp Development: Conceptual Foundations for Web3 Beginners"
+date: "2024-08-29"
+category: "Intel"
+author: "Chinthaka Weerakkody and Kingsley Okonkwo"
+---
+
+> This is a cross-post from [MetaMask's blog](https://metamask.io/en-GB/news/ethereum-dapp-development-conceptual-foundations-for-web3-beginners), co-authored with Kingsley Okonkwo.
+
+Imagine a world where online interactions are driven by a decentralized network that ensures transparency, security, and user control—this is what web3, powered by blockchain technology, promises. In this article, we'll explore the foundational concepts and tools necessary to understand development on the Ethereum blockchain.
+
+To explain how the client-server architecture works in web2, people often use "the kitchen analogy." In this analogy, the server is like a kitchen, and the client (user) sends a request, similar to placing a food order. The server processes this request and returns the data, akin to serving a cooked meal. The API acts as the waiter, taking your order to the kitchen and bringing back your meal, facilitating communication between the client and the server, even if they don't speak the same language.
+
+We can extend this kitchen analogy to explain web3, with some key differences such as: multiple identical kitchens (nodes) exist, one of which is chosen at random, and you must pay a cooking fee upfront before receiving your meal.
+
+Let's use these analogies to understand what happens behind the scenes when a user interacts with a dapp. While analogies are imperfect, they can help create a mental model for starting your development journey on Ethereum.
+
+## Decentralized nodes and smart contracts - multiple kitchens
+
+In the decentralized world, there are no traditional "servers." Instead, decentralized nodes are spread across the globe, working together to achieve incredible results. These nodes collectively maintain a shared, immutable ledger called the blockchain, which ensures that every transaction is secure and transparent. Any node can process your transaction or execute your smart contract code.
+
+#### What are nodes in blockchain?
+
+A blockchain node is any computer that runs the software for a blockchain protocol and connects to its network. These nodes are the backbone of a decentralized network, serving as key stakeholders that maintain the blockchain's infrastructure. They act as storage points, so whenever a user accesses data on the blockchain, they are interacting with a node. Nodes are transparent and accessible to anyone in the network.
+
+Since blockchains operate without a central authority, control is distributed across a network of nodes, which collectively handle tasks like validating transactions and executing governance protocols. All tokens and smart contracts on a blockchain reside within nodes, making them essential to the blockchain's functionality. Without nodes, the foundational structure of blockchains would not exist.
+
+#### What is a smart contract?
+
+A smart contract is a self-executing program that runs on the blockchain, with the terms of the agreement directly encoded into it. When certain conditions are met, the contract automatically enforces and executes the agreed-upon terms, eliminating the need for intermediaries.
+
+However, a significant challenge in this decentralized network is ensuring that nodes act honestly and process user requests correctly, given the lack of a centralized authority. This is where the concept of "consensus" comes into play.
+
+Consensus mechanisms ensure that all transactions are verified and agreed upon by nodes, preventing fraud and double-spending, while maintaining the blockchain's integrity. To extend our kitchen analogy: after the chosen kitchen prepares your order, it shares the completed dish and recipe with other kitchens. These kitchens then follow the same recipe, compare the results, and collectively confirm that the order was prepared correctly, ensuring consistency and accuracy across the network.
+
+#### Tools for smart contract lifecycle management
+
+Unlike in web2, where you need to manage infrastructure for deploying servers, web3 shifts much of the backend logic to smart contracts on the blockchain. Below are some development environments that streamline the entire lifecycle of smart contract development:
+
+* **Hardhat**: A comprehensive development environment that includes components for editing, compiling, debugging, and deploying smart contracts and apps. It's ideal if you're proficient in JavaScript and need extensive integration with web technologies.
+* **Foundry**: A fast, efficient option that keeps everything within the Solidity ecosystem, enhancing productivity through its speed and native support for Solidity.
+
+For a detailed comparison of Hardhat and Foundry, check out our guide, _Choosing the Right Ethereum Development Tool_.
+
+* **Remix**: An online IDE with preloaded plugins for essential operations, perfect for quickly testing code without needing to install anything locally.
+
+Developers can use various high-level programming languages to write smart contracts, which are then compiled into low-level bytecode. The two most popular languages are:
+
+* **Solidity**: Known for its JavaScript-like syntax, making it accessible for many developers.
+* **Vyper**: Designed for enhanced security and readability, with Python-like syntax.
+
+Other languages include Yul, Cairo, and Rust, offering additional options depending on your development needs.
+
+## JSON-RPC API - waiters
+
+How does your food order get from your table to the kitchen, and how does the completed order return to your table? Through waiters, of course!
+
+In web2, REST APIs serve as the 'waiters,' facilitating communication between your application and the backend server where the business logic resides. To interact with this backend, you need a URL and specific endpoints for various operations.
+
+In web3, interaction with the blockchain node happens via a JSON-RPC API. This API enables multiple dapps to interact with the same URL by specifying the contract containing the business logic within the JSON-RPC call body. Though you might be less familiar with JSON-RPC APIs, they function similarly to typical HTTP requests, as shown here:
+
+```bash
+curl -X POST \
+  'https://linea-goerli.infura.io/v3/2QBbceinBF3CvQvRwe9uaHLsOe' \
+  --header 'Accept: */*' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+```
+
+Look closely at what's in the data object of the request's body:
+
+```json
+{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}
+```
+
+It includes the JSON-RPC version, a method for the desired action (e.g., retrieving the latest block number), optional parameters, and an ID to track the request. This format standardizes communication with Ethereum nodes, whether for data retrieval or executing blockchain actions.
+
+The URL in the request points to Infura, a node provider that spares us the complexity and resource demands of setting up and maintaining our own Ethereum node. This URL serves as a gateway to the blockchain.
+
+Remember the earlier point about paying a cooking fee upfront? In web3, executing transactions incurs a cost known as the 'Gas fee,' which depends on the complexity of the transaction and the network congestion at the time. However, reading data from the blockchain is free of charge.
+
+To ensure your transaction is correctly understood and executed, a standardized way to describe it is needed. This is where the ABI (Application Binary Interface) comes in—it acts like a menu, defining how to interact with the smart contract's functions, specifying the required parameters, and how the function should be executed.
+
+So, how does your dapp communicate with deployed smart contracts? As we've discussed, this requires using the JSON-RPC API, but to simplify this process, several libraries can help. In JavaScript, options include Ethers.js or Viem, and for React-based front ends, wagmi—a React Hooks library for Ethereum—is especially useful. These libraries wrap your JSON-RPC calls, making interactions with the blockchain and your deployed contracts more manageable.
+
+Viem, and by extension Wagmi (which uses viem under the hood), provides strongly typed APIs, enhancing the developer experience with autocomplete, type inference, and static validation. By supplying an ABI, viem offers autocomplete and catches type errors before they affect users.
+
+Not sure whether to choose ethers.js or viem? _Check out this Detailed Comparison for Web3 Developers_.
+
+## Web3 dapp frontend development – dining
+
+There are multiple ways to interact with smart contracts, but let's explore the most popular method: through a dapp, which is a decentralized web or mobile app designed to interact with the blockchain.
+
+So, what sets a dapp apart from a typical web app? Visually, there's often no significant difference. Developers can use familiar web frameworks from web2 in web3, like React, Next.js, or even vanilla JavaScript, and deploy dapps in much the same way. However, there are decentralized storage solutions like IPFS (InterPlanetary File System) or SWARM that are commonly used in web3.
+
+A distinctive feature in most web3 apps is the "Connect Wallet" functionality. When you click "Connect Wallet" in a dapp, you're authorizing the application to interact with your wallet, allowing it to read your public address and request transactions on your behalf. Transactions need to be authenticated to verify that the user is eligible to perform the action. This is achieved through signing, a process that uses your private key—a unique identifier proving your ownership of an Ethereum account, securely stored in your wallet.
+
+Let's dive deeper into wallets: Wallets come in various forms, including browser extensions, mobile apps, and even physical devices, with MetaMask being one of the most popular. Just as real-world restaurants accept multiple payment methods, you might need to support multiple wallets in your dapp.
+
+To implement the connect wallet feature easily and support various wallet types, consider using tools like:
+
+* MetaMask SDK
+* Web3Modal
+* RainbowKit
+
+These tools can streamline the integration process, ensuring a seamless connection between your dapp and the user's wallet.
+
+## Ready to dive deeper into web3 development?
+
+Web3 development changes the way apps work by using smart contracts on the blockchain, making them permanent and moving backend tasks away from centralized servers. This shift requires developers to get familiar with things like transaction signing, handling gas fees, and using JSON-RPC APIs, setting it apart from traditional web2 development. While this can be challenging, it also opens up new and exciting possibilities.
+
+To learn more about web3 development and stay updated on the latest tools and best practices, visit the MetaMask blog for developer-focused insights and guides. 

@@ -81,15 +81,27 @@ function processContentFile<T extends BaseContent>(
 export async function getChintelPosts(): Promise<ChintelPost[]> {
   const files = await getMDXFilesFromDirectory(CONTENT_DIRS.chintel);
 
-  return files.map((file) =>
-    processContentFile<ChintelPost>(file, CONTENT_DIRS.chintel, "Intel", true)
-  );
+  return files
+    .map((file) =>
+      processContentFile<ChintelPost>(file, CONTENT_DIRS.chintel, "Intel", true)
+    )
+    .sort((a, b) => {
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 }
 
 export async function getChinfieldPosts(): Promise<ChinfieldPost[]> {
   const files = await getMDXFilesFromDirectory(CONTENT_DIRS.chinfield);
 
-  return files.map((file) =>
-    processContentFile<ChinfieldPost>(file, CONTENT_DIRS.chinfield, "coding()")
-  );
+  return files
+    .map((file) =>
+      processContentFile<ChinfieldPost>(file, CONTENT_DIRS.chinfield, "coding()")
+    )
+    .sort((a, b) => {
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 }

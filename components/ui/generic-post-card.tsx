@@ -47,7 +47,7 @@ export function GenericPostCard({
       <Link href={`${basePath}/${post.slug}`} className="space-y-4 block">
         <div className="space-y-2">
           <div className="flex justify-between items-start gap-4">
-            <h2 className="text-2xl font-bold text-foreground group-hover:text-info-hover transition-colors duration-200">
+            <h2 className="text-2xl font-bold text-foreground hover:text-orange-500 dark:hover:text-yellow-400 transition-colors duration-200">
               {post.title}
             </h2>
             <span className="shrink-0 whitespace-nowrap text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-muted-foreground">

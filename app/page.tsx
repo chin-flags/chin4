@@ -11,7 +11,7 @@ import Chinvolved from "@/components/chinvolved";
 import Chinreach from "@/components/chinreach";
 
 const messages = [
-  "chin.com is expensive",
+  "chin.com is premium",
   "chin1.com is taken",
   "chin2.com is taken",
   "just missed chin3.com",

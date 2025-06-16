@@ -52,7 +52,7 @@ export function GenericPostGrid<T extends string>({
             </div>
           ))}
         </div>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8">
           {posts.map((post) => (
             <GenericPostCard 
               key={post.slug} 
@@ -72,7 +72,7 @@ export function GenericPostGrid<T extends string>({
         onCategoryChange={setSelectedCategory}
         categories={categories}
       />
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8">
         {filteredPosts.map((post) => (
           <GenericPostCard 
             key={post.slug} 

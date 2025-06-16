@@ -1,8 +1,9 @@
 export default function Experience() {
   const experiences = [
     {
-      title: "Developer Relations Engineer – MetaMask Delegation Toolkit (Contract)",
+      title: "Developer Relations Engineer ( Contract ) – MetaMask Delegation Toolkit ",
       company: "Consensys – Sri Lanka (Remote)",
+      companyLink: "https://consensys.io",
       period: "Oct 2024 – Present",
       description: [
         "Helped developers navigate the Delegation Toolkit – from answering 'How do I?' to 'Why isn't this working?'",
@@ -12,8 +13,9 @@ export default function Experience() {
       ]
     },
     {
-      title: "Software Engineer – Rapid Application Development (RAD)",
+      title: "Software Engineer ( Contract ) – Rapid Application Development (RAD)",
       company: "Consensys – Sri Lanka (Remote)",
+      companyLink: "https://consensys.io",
       period: "Jan 2023 – Oct 2024",
       description: [
         "Helped bridge the gap between developer experience and product vision across multiple teams (Linea, MetaMask SDK, Phosphor).",
@@ -21,8 +23,9 @@ export default function Experience() {
       ]
     },
     {
-      title: "Fullstack Software Engineer (Contract, part-time)",
+      title: "Fullstack Software Engineer ( Contract )",
       company: "Sircular – Sri Lanka (Remote)",
+      companyLink: "https://sircular.ai",
       period: "March 2022 – Feb 2025",
       description: [
         "Wore multiple hats: built frontend UIs, backend APIs, and everything in between.",
@@ -33,6 +36,7 @@ export default function Experience() {
     {
       title: "Freelance Software Developer",
       company: "",
+      companyLink: "",
       period: "Feb 2020 – March 2022",
       description: [
         "Built full-stack web apps and backend services for clients across industries (and learned a lot of random stuff along the way)."
@@ -56,7 +60,34 @@ export default function Experience() {
               </div>
               {experience.company && (
                 <p className="text-md text-muted-foreground mb-1">
-                  {experience.company}
+                  {experience.companyLink ? (
+                    <a 
+                      href={experience.companyLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 hover:text-primary transition-colors duration-300 border-b border-transparent hover:border-primary/50"
+                    >
+                      {experience.company}
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="14" 
+                        height="14" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        className="opacity-50 group-hover:opacity-100 transition-opacity"
+                      >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  ) : (
+                    experience.company
+                  )}
                 </p>
               )}
               <p className="text-sm text-muted-foreground mb-3">

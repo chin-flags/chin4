@@ -1,0 +1,189 @@
+---
+title: "How to build a social invite feature in your dapp using the Delegation Toolkit"
+date: "2025-05-20"
+category: "Intel"
+author: "Kingsley Okonkwo and Chinthaka Weerakkody"
+---
+
+> This is a cross-post from [MetaMask's blog](https://metamask.io/en-GB/news/how-to-build-a-social-invite-feature-in-your-dapp-using-the-delegation), co-authored with Kingsley Okonkwo.
+
+In our previous blog post, [What is the Delegation Toolkit and What Can You Build with It?](https://metamask.io/en-GB/news/what-is-the-delegation-toolkit-and-what-can-you-build-with-it), we explored how MetaMask's Delegation Toolkit empowers developers to create more flexible, user-friendly dapps. One compelling use case is building a social invite feature that lets users onboard their friends with minimal friction.
+
+This tutorial walks through how to implement that kind of flow, where an existing user can delegate limited permissions to another, making it easy for new users to explore a dapp without the usual hurdles of setting up and funding a wallet upfront.
+
+## The Concept
+
+Imagine this: Alice wants Bob to try out a dapp she's using. She sends him an invite that allows him to claim a small amount of ETH from her wallet, say, 0.001 ETH, within a set time limit. Bob can start using the dapp right away, without needing to install a wallet extension or pay gas fees himself. Meanwhile, Alice stays in full control of her wallet, with no exposure of her private key.
+
+This is the kind of streamlined onboarding experience the Delegation Toolkit makes possible, using permissioned delegation and secure, off-chain signatures.
+
+## Key Components
+
+### The Inviter
+
+The inviter is the user who wants to share limited access to their wallet in order to help onboard someone else. In this tutorial, the inviter will use a [MetaMask Delegator account](https://docs.metamask.io/delegation-toolkit/concepts/delegator-accounts/), which is a smart contract wallet based on EIP-4337. You can either create a new delegator account or use an existing one if you've already set one up. To handle the deployment and infrastructure, we'll be using [Pimlico's EIP-4337 services](https://docs.pimlico.io/).
+
+### The Invitation
+
+An invitation in this context is simply a [delegation](https://docs.metamask.io/delegation-toolkit/concepts/delegattion/), a signed object created by the delegator account and stored off-chain. Once the delegator account is deployed and funded with ETH, you can create a delegation that allows another user to claim a certain amount of tokens within a specific timeframe. This setup removes the need for the invitee to fund a wallet or pay gas upfront, making onboarding much smoother.
+
+### The Invitee
+
+The invitee is the person being onboarded. They can use either an [Externally Owned Account (EOA)](https://ethereum.org/en/developers/docs/accounts/) or a [Smart Contract Account (SCA)](https://ethereum.org/en/developers/docs/accounts/), depending on your implementation. For this tutorial, we'll automatically generate an EOA for the invitee when they click the claim link.
+
+### Conditions
+
+Each invitation can include conditions to control how and when it can be used. These conditions, also known as [caveats](https://docs.metamask.io/delegation-toolkit/how-to/create-delegation/restrict-delegation/), might specify:
+- A funding limit
+- A redemption deadline
+- Restrictions on how many times the delegation can be used
+
+## Implementation Steps
+
+### Prerequisites
+
+Before we begin building, make sure you have the following set up:
+- [Node.js](https://nodejs.org/) (version 18 or later)
+- An [Infura](https://www.infura.io/) RPC endpoint for the Sepolia testnet
+- A basic understanding of [EIP-4337 account abstraction](https://eips.ethereum.org/EIPS/eip-4337)
+- [Pimlico](https://www.pimlico.io/) Bundler and Paymaster URLs
+
+### Installation
+
+First, install the delegation toolkit:
+
+```bash
+npm install @metamask/delegation-toolkit
+```
+
+
+### Creating the Inviter Account
+
+The inviter account is the wallet that shares limited permissions to help onboard a new user. It should have enough crypto to cover the invitee's gas fees during their initial interactions with the dapp.
+
+```typescript
+import { http, createPublicClient } from "viem";
+import { privateKeyToAccount, generatePrivateKey } from "viem/accounts";
+import { sepolia as chain } from "viem/chains";
+import {
+  Implementation,
+  toMetaMaskSmartAccount,
+} from "@metamask/delegation-toolkit";
+
+const RPCEndpoint = "<INFURA RPC ENDPOINT HERE>";
+const transport = http(RPCEndpoint);
+const publicClient = createPublicClient({ transport, chain });
+
+const privateKey = generatePrivateKey();
+const owner = privateKeyToAccount(privateKey);
+
+const deploySalt = "0x";
+
+const account = await toMetaMaskSmartAccount({
+  client: publicClient,
+  implementation: Implementation.Hybrid,
+  deployParams: [owner.address, [], [], []],
+  deploySalt,
+  signatory: { account: owner },
+});
+```
+
+### Creating the Delegation
+
+We'll create an open delegation that can be redeemed by any account:
+
+```typescript
+import {
+  createOpenDelegation,
+  createCaveatBuilder,
+} from "@metamask/delegation-toolkit";
+
+const caveatBuilder = createCaveatBuilder(account.environment);
+const caveats = caveatBuilder
+  .addCaveat("limitedCalls", 1)
+  .addCaveat("nativeTokenTransferAmount", BigInt(1))
+  .addCaveat("timestamp", 0, Math.floor(Date.now() / 1000) + 86_400);
+
+const openDelegation = createOpenDelegation({
+  from: account.address,
+  caveats,
+});
+```
+
+### Signing and Storing the Delegation
+
+```typescript
+import { stringify } from "superjson";
+
+const signature = await account.signDelegation({
+  delegation: openDelegation,
+});
+
+localStorage.setItem(
+  "DELEGATION",
+  stringify({ delegation: openDelegation, signature })
+);
+```
+
+### Redeeming the Invitation
+
+When the invitee clicks the claim link and accepts the invitation, they are redeeming the delegation. This process triggers a user operation on the blockchain to transfer the delegated funds.
+
+```typescript
+import { parse } from "superjson";
+import { createExecution } from "@metamask/delegation-toolkit";
+import { encodeFunctionData } from "viem";
+import {
+  encodeExecutionCalldatas,
+  encodePermissionContexts,
+  SINGLE_DEFAULT_MODE,
+} from "@metamask/delegation-toolkit";
+import { createPimlicoClient } from "@pimlico/client";
+import { createBundlerClient } from "viem/account-abstraction";
+
+const storedData = localStorage.getItem("DELEGATION");
+
+if (!storedData) {
+  throw new Error("Delegation not found in storage");
+}
+
+const { delegation, signature } = parse(storedData);
+
+const execution = createExecution(
+  delegateAccount.address,
+  amount
+);
+
+const redeemData = encodeFunctionData({
+  abi: delegateAccount.abi,
+  functionName: "redeemDelegations",
+  args: [
+    encodePermissionContexts([delegation]),
+    [SINGLE_DEFAULT_MODE],
+    encodeExecutionCalldatas([[execution]]),
+  ],
+});
+
+const hash = await bundlerClient.sendUserOperation({
+  account: delegateAccount,
+  calls: [
+    {
+      to: delegateAccount.address,
+      value: 0n,
+      data: redeemData,
+    },
+  ],
+  paymaster: true,
+  ...fast,
+});
+
+await bundlerClient.waitForUserOperationReceipt({
+  hash,
+});
+```
+
+## Conclusion
+
+This tutorial has shown you how to implement a social invite feature using the [Delegation Toolkit](https://docs.metamask.io/delegation-toolkit). By leveraging account abstraction and secure delegation, you can create a more user-friendly onboarding experience for your dapp users. The ability to delegate limited permissions without exposing private keys opens up new possibilities for social features in web3 applications.
+
+Remember that this is just one example of what you can build with the Delegation Toolkit. The same principles can be applied to create other types of permissioned interactions between users in your dapp. 

@@ -3,19 +3,18 @@ import SubSectionHeader from "../ui/sub-section-header";
 export default function NotGoodAt() {
   const weaknesses = [
     {
-      title: "Side projects",
-      description:
-        "Finishing a side project once the fun part is over",
+      title: "Finishing side projects",
+      description: "Finishing a side project once the fun part is over",
     },
     {
       title: "Asking for help",
       description:
-        "Not because I don't want to collaborate. I just like banging my head on the wall first—it's part of the process.",
+        "Not because I don't want to collaborate. I just like banging my head on the wall first. It's part of the process.",
     },
     {
       title: "Meetings",
       description:
-        "I don't hate them. I just don't thrive in them. Flow is where I do my best work, and meetings break that. Even short ones leave a mental echo. I'd rather async, docs, or a weird diagram any day.",
+        "I don't hate them. I just don't thrive in them. Flow is where I do my best work, and unnnecessary meetings break that.",
     },
   ];
 

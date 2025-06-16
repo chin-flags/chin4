@@ -25,12 +25,14 @@ export default async function Page({ params }: PageProps) {
             source={content}
             components={mdxComponents}
             options={{
+              parseFrontmatter: true,
               mdxOptions: {
                 remarkPlugins: [remarkGfm],
                 rehypePlugins: [
                   rehypeSlug,
                   [rehypeAutolinkHeadings, { behavior: "wrap" }],
                 ],
+                format: 'mdx',
               },
             }}
           />

@@ -1,0 +1,108 @@
+---
+title: "Hacker guide: MetaMask Delegation Toolkit ERC-7715 actions"
+date: "2025-04-22"
+category: "Intel"
+author: "Chinthaka Weerakkody"
+---
+
+> This is a cross-post from [MetaMask's blog](https://metamask.io/en-GB/news/hacker-guide-metamask-delegation-toolkit-erc-7715-actions).
+
+This guide provides a comprehensive overview of the experimental ERC-7715 actions in the MetaMask Delegation Toolkit, an innovative tool that allows dapps to request and manage user permissions for specific actions such as token transfers. 
+
+This enables exciting new use cases like subscriptions and automated payments while enhancing the user experience. We'll explore the underlying concepts, guide you through setting up your development environment, and walk through the process of building a dapp that leverages the Gator SDK. This guide uses Viem for blockchain interactions.
+
+## Fundamentals: rethinking web3 transactions
+
+ERC-7715 introduces a new paradigm for how dapps interact with user wallets. Instead of requiring users to approve every transaction manually, dapps can request permission to perform certain actions on the user's behalf within predefined limits.
+
+### Key concepts
+
+* **Session account**: The dapp's account (either an EOA or a smart contract) that is granted permission to act on the user's behalf.
+* **User wallet**: The user's MetaMask wallet, which grants permissions to the session account.
+* **Permissions**: Specific actions that a dapp is authorized to perform. The Gator SDK currently supports native-token-stream.
+* **Gator smart account**: A smart account created within the user's MetaMask Snap, specifically for managing permissions granted via the Gator SDK.
+* **Delegation**: The core mechanism that makes permission-based transactions possible. When a user grants permission, a delegation is created from their Gator Smart Account to the dapp's session account.
+
+This establishes an off-chain authorization, allowing the dapp to execute specific actions under defined conditions without requiring the user to sign each transaction. It's like setting up a recurring allowance with rules.
+
+* **ERC-7715 (wallet permission requests)**: A standard for how dapps request permissions from user wallets. https://eip.tools/eip/7715
+* **ERC-7710 (smart contract delegation)**: A standard for how smart contracts can delegate capabilities to other accounts. https://eip.tools/eip/7710
+* **MetaMask Snaps**: A system that allows developers to extend the functionality of MetaMask. Snaps are essentially plugins that can extend MetaMask's functionality, allowing it to support new blockchains, new transaction types, and, in the case of the Gator SDK, advanced permission management. The Gator SDK relies on two Snaps:  
+   * **Permission kernel snap**: Acts as a router to the specific permissions provider Snap, in our case, the Gator Permission Snap.  
+   * **Gator permissions snap**: Creates and manages the user's Gator Smart Account. This Snap handles providing the user with the Permission Picker UI and allowing them to edit permissions and grant or reject them.
+
+* **ERC-4337**: Account Abstraction standard, which enables more flexible smart accounts and transaction management, often used in conjunction with the Gator SDK. https://eip.tools/eip/4337
+
+* **Bundler**: A service that bundles multiple user operations (transactions) into a single transaction, optimizing gas usage.
+* **Paymaster (optional)**: A smart contract that can pay for the gas fees of transactions, allowing for gasless transactions for the user.
+
+### How it works
+
+The Gator SDK, in conjunction with MetaMask Snaps, ERC-7715, and ERC-7710, enables a permission-based workflow:
+
+1. **Permission request**: The dapp, acting as the session account, initiates a permission request. This is done using the wallet_grantPermissions method, standardized in ERC-7715. The dapp specifies the type of permission (e.g., native-token-stream), the target (its address), and any specific parameters (e.g., amount).
+2. **User authorization**: MetaMask Flask presents the permission request to the user. If the required Snaps are not already installed, MetaMask Flask will prompt the user to install them at this point. The user is then presented with a clear and understandable explanation of what the dapp is requesting.
+
+The user can then approve or reject the request. The Permission Kernel Snap plays a key role in this interaction, ensuring the user understands the permissions being requested.
+
+3. **Gator smart account creation**: If the user approves the permission, the Gator Permissions Snap takes action. This Smart Account is where the delegated authority will originate.
+4. **Funding Gator account**: The user is responsible for funding this Gator Smart Account with sufficient funds to cover the delegated actions. For example, if the permission is for native-token-stream, the user needs to deposit the relevant native token into their Gator Smart Account.
+5. **Delegation creation**: This is a crucial step. A delegation is created, establishing the link between the user's Gator Smart Account and the dapp's session account. This delegation, governed by ERC-7710, authorizes the dapp to act on behalf of the user, but only within the boundaries of the granted permission. The delegation specifies:  
+   1. The actions the dapp can perform (e.g., transfer native tokens).  
+   2. Any conditions or limitations (caveats), such as:  
+         1. Maximum amount per transfer  
+         2. Frequency of transfers  
+         3. Expiration date
+6. **Permission redemption (delegated action)**: When the dapp needs to act within the scope of the granted permission, it "redeems" the delegation. This involves the dapp constructing a transaction (or User Operation, if using ERC-4337) that adheres to the rules set out in the delegation.
+
+The dapp then submits this transaction (or User Operation, if using ERC-4337), providing proof of the valid delegation.
+
+## Set up your development environment
+
+Please note that the Snaps required for ERC-7715 actions currently work only on Sepolia. If you're hacking on the ERC-7715 track, make sure to use the Sepolia testnet. For other features in the Delegation Toolkit, you can use any of the test networks listed here.
+
+### Prerequisites
+
+* **Node.js:** Ensure Node.js is installed on your system.
+* **MetaMask Flask:** Install MetaMask Flask, a developer-focused version of MetaMask. Download it from the official MetaMask site. **Important: Use a separate browser profile for Flask. If you use the same browser with your Regular MetaMask wallet, please disable it.**
+* **MetaMask Snaps:** The Snaps required for the Gator SDK (Permission Kernel Snap and Gator Permissions Snap) can be installed manually, or MetaMask Flask will prompt the user to install them when a dapp requests permissions for the first time.
+* **ERC-4337 bundler:** This is required if the session account is an ERC-4337 wallet. To send user operations from an ERC-4337 wallet, you'll need access to a bundler. Pimlico is a good option. See their documentation.
+* **Paymaster (optional):** If you want to sponsor gas fees, you'll need a paymaster. Pimlico also provides paymaster services.
+
+### Installation steps
+
+1. **Install Node.js:** Download and install Node.js from the official website.
+2. **Install MetaMask Flask:**  
+   * Open a new browser profile.  
+   * Go to the MetaMask Flask download page on the MetaMask website.  
+   * Download and install the MetaMask Flask extension.
+3. **Set up a bundler:**  
+   * If using Pimlico, create an account on their platform.  
+   * Obtain your bundler API key from Pimlico.  
+   * Familiarize yourself with how to send user operations to the Pimlico bundler.
+4. **Set up a paymaster (Optional):**  
+   * If using Pimlico, you can also use their paymaster service. Configure your dapp to use the paymaster.
+
+## Building a dapp with Gator ERC-7715 actions
+
+The easiest way to get started with Gator ERC7715 actions is with the create-gator-app CLI, which has a template called Experimental: Basic Gator app to try out ERC7715 Permissions. This template comes with all the required basic libraries and code snippets installed.
+
+You can run the CLI with:
+
+```bash
+npx create-gator-app@latest
+```
+
+Please refer to these sections of the documentation for more important code snippets:
+
+* Granting a permission: https://docs.gator.metamask.io/experimental/erc-7715
+* Redeeming a permission: https://docs.gator.metamask.io/experimental/erc-7710
+* Creating a Gator account, if you want to use a Gator account as the session account: https://docs.gator.metamask.io/how-to/create-delegator-account
+
+## Resources
+
+* Official Documentation (Checkout Experimental packages for ERC7715 actions): https://docs.gator.metamask.io/
+* create-gator-app CLI: https://hackmd.io/@x2AtdNlxSjuUiT4xerbPSg/Byy9hijCJe
+* Get help:
+  * Consensys discord channel, look for mm-dtk channel: [Join here](https://discord.gg/consensys)
+  * MetaMask Developer Chat Telegram group: [Join here](https://t.me/metamaskdev) 

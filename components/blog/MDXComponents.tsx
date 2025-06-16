@@ -20,6 +20,66 @@ interface ImageProps {
   [key: string]: unknown
 }
 
+interface VideoProps {
+  src: string
+  title?: string
+  [key: string]: unknown
+}
+
+const Video = ({ src, title = "Video", ...props }: VideoProps) => {
+  // YouTube video
+  if (src.includes('youtube.com') || src.includes('youtu.be')) {
+    const videoId = src.includes('youtube.com')
+      ? src.split('v=')[1]?.split('&')[0]
+      : src.split('youtu.be/')[1]?.split('?')[0];
+    
+    return (
+      <div className="relative w-full aspect-video my-8 rounded-lg overflow-hidden">
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute top-0 left-0 w-full h-full"
+          {...props}
+        />
+      </div>
+    );
+  }
+
+  // Vimeo video
+  if (src.includes('vimeo.com')) {
+    const videoId = src.split('vimeo.com/')[1]?.split('?')[0];
+    
+    return (
+      <div className="relative w-full aspect-video my-8 rounded-lg overflow-hidden">
+        <iframe
+          src={`https://player.vimeo.com/video/${videoId}`}
+          title={title}
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          className="absolute top-0 left-0 w-full h-full"
+          {...props}
+        />
+      </div>
+    );
+  }
+
+  // Direct video file
+  return (
+    <div className="my-8 rounded-lg overflow-hidden">
+      <video
+        src={src}
+        title={title}
+        controls
+        className="w-full rounded-lg"
+        style={{ maxWidth: '100%', height: 'auto' }}
+        {...props}
+      />
+    </div>
+  );
+};
+
 export const mdxComponents = {
   pre: ({ children, ...props }: PreProps) => {
     return (
@@ -51,6 +111,7 @@ export const mdxComponents = {
       />
     )
   },
+  video: Video,
   h1: ({ children, ...props }: { children: ReactNode; [key: string]: unknown }) => (
     <h1 {...props} className="text-4xl font-bold mt-8 mb-4 text-foreground">
       {children}
@@ -79,7 +140,7 @@ export const mdxComponents = {
     }
     
     return (
-      <p {...props} className="mb-4 leading-relaxed text-text-secondary">
+      <p {...props} className="mb-4 text-lg leading-relaxed text-text-secondary">
         {children}
       </p>
     );
