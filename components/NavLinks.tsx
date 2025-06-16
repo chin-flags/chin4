@@ -27,7 +27,7 @@ export default function NavLinks({
 
   return (
     <motion.div
-      className={`flex flex-col sm:gap-1 items-start text-xl sm:text-3xl md:text-4xl ${
+      className={`flex flex-col sm:gap-1 items-start text-2xl sm:text-3xl md:text-4xl ${
         position === "left" ? "mr-2" : "ml-2"
       }`}
       initial={shouldAnimate ? "hidden" : "visible"}
