@@ -21,8 +21,8 @@ export function GenericCategoryFilter<T extends string>({
           onClick={() => onCategoryChange(category)}
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
             selectedCategory === category
-              ? "bg-blue-500 text-white hover:bg-blue-600"
-              : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+              ? "bg-primary text-primary-foreground hover:bg-primary/90"
+              : "bg-muted text-muted-foreground hover:bg-muted/80"
           }`}
         >
           {category}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { GitBranch, ChevronRight } from "lucide-react";
+import { GitBranch } from "lucide-react";
 
 interface Commit {
   date: string;
@@ -23,13 +23,23 @@ type BranchName = "mechanical-engineering" | "acting" | "writing" | "hotfix/life
 type CommitsData = Record<BranchName, Commit[]>;
 
 export default function GitCareer() {
+  const [isBlinking, setIsBlinking] = useState(true);
+
   const branches: BranchName[] = [
     "mechanical-engineering",
-    "acting",
+    "acting", 
     "writing",
     "hotfix/life-decision",
   ];
   const [selectedBranch, setSelectedBranch] = useState<BranchName>("mechanical-engineering");
+
+  // Blinking cursor effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBlinking(prev => !prev);
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
 
   const commitsData: CommitsData = {
     "mechanical-engineering": [
@@ -303,62 +313,105 @@ export default function GitCareer() {
   };
 
   return (
-    <div className="bg-gray-900 mb-16 text-green-500 w-full mx-auto font-mono shadow-lg">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <span className="text-white font-bold">~/life-story</span>
-          <span className="text-gray-500">(</span>
-          <span className="text-yellow-500">{selectedBranch}</span>
-          <span className="text-gray-500">)</span>
+    <div className="mb-16 w-full mx-auto font-mono shadow-2xl rounded-lg overflow-hidden border border-border bg-surface-secondary">
+      {/* Terminal Header */}
+      <div className="flex items-center justify-between bg-muted px-4 py-2 border-b border-border">
+        <div className="flex items-center space-x-2">
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 rounded-full bg-destructive"></div>
+            <div className="w-3 h-3 rounded-full bg-warning"></div>
+            <div className="w-3 h-3 rounded-full bg-success"></div>
+          </div>
+          <span className="text-text-secondary text-sm ml-4">Terminal — chin@life-story</span>
         </div>
-        
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="bg-gray-900 text-green-500 hover:bg-gray-800">
-              <GitBranch className="mr-2" /> Switch Branch
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-gray-900 text-green-500">
-            {branches.map((branch) => (
-              <DropdownMenuItem
-                key={branch}
-                onClick={() => setSelectedBranch(branch)}
-                className={`hover:bg-gray-800 cursor-pointer ${
-                  branch === selectedBranch ? 'bg-gray-800 text-yellow-500' : ''
-                }`}
-              >
-                {branch}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
 
-      <div className="bg-gray-900 rounded overflow-y-auto max-h-[70vh]">
-        <div className="mb-4">
-          <span className="text-green-500">$ git log --oneline --decorate {selectedBranch}</span>
+      {/* Terminal Content */}
+      <div className="bg-surface-tertiary text-success p-4">
+        {/* Command Line Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className="text-info font-bold">~/life-story</span>
+            <span className="text-text-tertiary">(</span>
+            <span className="text-warning">{selectedBranch}</span>
+            <span className="text-text-tertiary">)</span>
+          </div>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button 
+                variant="outline" 
+                className="bg-surface-secondary text-success hover:bg-surface-tertiary border-border hover:border-success transition-all duration-200"
+              >
+                <GitBranch className="mr-2 w-4 h-4" /> Switch Branch
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-surface-secondary border-border">
+              {branches.map((branch) => (
+                <DropdownMenuItem
+                  key={branch}
+                  onClick={() => setSelectedBranch(branch)}
+                  className={`hover:bg-surface-tertiary cursor-pointer transition-colors ${
+                    branch === selectedBranch 
+                      ? 'bg-surface-tertiary text-warning' 
+                      : 'text-text-secondary hover:text-foreground'
+                  }`}
+                >
+                  {branch}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
-        
-        <div className="space-y-3">
-          {getCommits().map((commit: Commit, index: number) => (
-            <div key={index} className="flex">
-              <div className="text-yellow-500 mr-2 min-w-[8ch]">{commit.hash.substring(0, 7)}</div>
-              <div>
-                <p className="text-green-400">{commit.message}</p>
-                <div className="flex items-center text-sm text-gray-500">
-                  <span>Author: {commit.author} | Date: {commit.date}</span>
-                  {commit.branch && (
-                    <span className="ml-2 text-blue-400">({commit.branch})</span>
-                  )}
-                </div>
-              </div>
+
+        {/* Terminal Output */}
+        <div className="bg-surface-secondary rounded border border-border overflow-hidden">
+          <div className="p-4 overflow-y-auto max-h-[70vh]">
+            {/* Command */}
+            <div className="mb-4 flex items-center">
+              <span className="text-success mr-2">$</span>
+              <span className="text-success">git log --oneline --decorate {selectedBranch}</span>
             </div>
-          ))}
+            
+            {/* Git Log Output */}
+            <div className="space-y-3">
+              {getCommits().map((commit: Commit, index: number) => (
+                <div key={index} className="flex hover:bg-surface-tertiary/50 p-2 rounded transition-colors">
+                  <div className="text-warning mr-3 min-w-[8ch] font-bold">
+                    {commit.hash.substring(0, 7)}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-success mb-1">{commit.message}</p>
+                    <div className="flex items-center text-sm text-text-tertiary">
+                      <span>Author: <span className="text-info">{commit.author}</span></span>
+                      <span className="mx-2">|</span>
+                      <span>Date: <span className="text-text-secondary">{commit.date}</span></span>
+                      {commit.branch && (
+                        <>
+                          <span className="mx-2">|</span>
+                          <span className="text-warning">({commit.branch})</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Command Prompt */}
+            <div className="mt-6 flex items-center">
+              <span className="text-success mr-2">$</span>
+              <span className={`text-success ${isBlinking ? 'opacity-100' : 'opacity-0'} transition-opacity`}>
+                █
+              </span>
+            </div>
+          </div>
         </div>
-        
-        <div className="mt-4 flex items-center">
-          <ChevronRight className="text-green-500" />
-          <span className="text-green-500 animate-pulse">_</span>
+
+        {/* Terminal Footer */}
+        <div className="mt-4 text-xs text-text-tertiary flex justify-between">
+          <span>Press Ctrl+C to exit</span>
+          <span>{getCommits().length} commits in {selectedBranch}</span>
         </div>
       </div>
     </div>

@@ -42,19 +42,19 @@ export function GenericPostCard({
 
   return (
     <article 
-      className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 dark:border-gray-700"
+      className="group relative bg-surface-secondary rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-border"
     >
       <Link href={`${basePath}/${post.slug}`} className="space-y-4 block">
         <div className="space-y-2">
           <div className="flex justify-between items-start gap-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+            <h2 className="text-2xl font-bold text-foreground group-hover:text-info-hover transition-colors duration-200">
               {post.title}
             </h2>
-            <span className="shrink-0 whitespace-nowrap text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+            <span className="shrink-0 whitespace-nowrap text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-muted-foreground">
               {post.category}
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
             {post.date && (
               <time className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,10 +73,10 @@ export function GenericPostCard({
             )}
           </div>
         </div>
-        <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
+        <p className="text-text-secondary line-clamp-3">
           {post.description}
         </p>
-        <span className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium group-hover:gap-1.5 gap-1 transition-all">
+        <span className="inline-flex items-center text-info group-hover:text-info-hover font-medium group-hover:gap-1.5 gap-1 transition-all">
           Read more
           <svg 
             xmlns="http://www.w3.org/2000/svg" 

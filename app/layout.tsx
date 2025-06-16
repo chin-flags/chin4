@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {  Jost } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
@@ -9,7 +9,7 @@ const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
   weight: ["400", "800"],
-})
+});
 
 export const metadata: Metadata = {
   title: "Chin4",
@@ -22,10 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
-        className={`${jost.variable} bg-white font-jost dark:bg-gray-900 antialiased`}
-        suppressHydrationWarning
+        className={`${jost.variable} bg-background font-jost antialiased`}
       >
         <ThemeProvider
           attribute="class"

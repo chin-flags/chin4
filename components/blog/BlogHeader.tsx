@@ -38,7 +38,7 @@ export default function BlogHeader({ frontmatter }: BlogHeaderProps) {
 
   return (
     <div className="mb-8">
-      <h1 className="text-3xl font-bold mb-4">{frontmatter.title}</h1>
+      <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{frontmatter.title}</h1>
       <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
         {frontmatter.date && (
           <time className="flex items-center gap-2">

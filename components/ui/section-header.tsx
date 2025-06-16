@@ -20,7 +20,7 @@ export default function SectionHeader({
             duration: 0.5,
             ease: [0.48, 0.15, 0.25, 0.96],
           }}
-          className="inline-block text-orange-500 dark:text-yellow-300"
+          className="inline-block text-warning"
         >
           Ch
         </motion.span>
@@ -32,7 +32,7 @@ export default function SectionHeader({
             duration: 0.5,
             ease: [0.48, 0.15, 0.25, 0.96],
           }}
-          className="inline-block text-yellow-300 dark:text-yellow-800"
+          className="inline-block text-primary"
         >
           {title}
         </motion.span>
@@ -46,7 +46,7 @@ export default function SectionHeader({
             duration: 0.5,
             ease: [0.48, 0.15, 0.25, 0.96],
           }}
-          className="text-lg sm:text-xl text-gray-600 dark:text-gray-400"
+          className="text-lg sm:text-xl text-text-secondary"
         >
           {subheader}
         </motion.p>

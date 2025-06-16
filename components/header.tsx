@@ -11,14 +11,14 @@ export function Header() {
   const showNav = pathname !== "/";
 
   return (
-    <header className={cn("sticky top-0 z-50 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm")}>
+    <header className={cn("sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm")}>
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <div className="w-36" />
         <nav className="hidden md:flex flex-1 justify-center items-center space-x-4">
           {showNav && (
             <Link
               href="/"
-              className="px-4 py-2 text-base font-medium rounded-lg transition-colors text-gray-600 dark:text-gray-300 inline-flex items-center gap-2"
+              className="px-4 py-2 text-base font-medium rounded-lg transition-colors text-text-secondary hover:text-text-hover inline-flex items-center gap-2"
             >
               <Image
                 src="/chin1.png"

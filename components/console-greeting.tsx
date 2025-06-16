@@ -6,9 +6,9 @@ export function ConsoleGreeting() {
   useEffect(() => {
     console.log(
       `%cHello, you little wannabe hacker! 🕵️‍♂️`,
-      "color: #ff69b4; font-size: 18px; font-weight: bold;"
+      "color: hsl(var(--console-primary)); font-size: 18px; font-weight: bold;"
     );
-    console.log(`%cNow, let's see...`, "color: #ffa500; font-size: 14px;");
+    console.log(`%cNow, let's see...`, "color: hsl(var(--console-secondary)); font-size: 14px;");
     console.log(
       `✅ Click "Toggle Device Toolbar" to check if this is responsive.  
 ✅ Type "document.designMode='on'" to mess with the page.  
@@ -19,7 +19,7 @@ export function ConsoleGreeting() {
     );
     console.log(
       `%cP.S. If you're reading this, you're either a developer or very, very curious. Respect. ✊`,
-      "color: #00ff00; font-size: 12px;"
+      "color: hsl(var(--console-success)); font-size: 12px;"
     );
   }, []);
 

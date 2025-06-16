@@ -5,7 +5,6 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import BlogLayout from "@/components/blog/BlogLayout";
 import BlogHeader from "@/components/blog/BlogHeader";
-import { MDXWrapper } from "@/components/blog/MDXWrapper";
 import { mdxComponents } from "@/components/blog/MDXComponents";
 import { getMDXContent } from "@/lib/mdx-utils";
 
@@ -19,9 +18,9 @@ export default async function Page({ params }: PageProps) {
     const { frontmatter, content } = getMDXContent("chintel", slug);
 
     return (
-      <BlogLayout>
+      <BlogLayout backHref="/chintel" backText="Back to Chintel">
         <BlogHeader frontmatter={frontmatter} />
-        <MDXWrapper>
+        <div className="prose lg:prose-2xl dark:prose-invert max-w-none font-jost">
           <MDXRemote
             source={content}
             components={mdxComponents}
@@ -35,7 +34,7 @@ export default async function Page({ params }: PageProps) {
               },
             }}
           />
-        </MDXWrapper>
+        </div>
       </BlogLayout>
     );
   } catch (error) {

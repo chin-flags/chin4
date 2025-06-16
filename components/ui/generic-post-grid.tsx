@@ -40,13 +40,13 @@ export function GenericPostGrid<T extends string>({
     return (
       <div className={`w-full ${className}`}>
         <div className="flex flex-wrap gap-2 mb-8">
-          <div className="px-4 py-2 rounded-full text-sm font-medium bg-blue-500 text-white">
+          <div className="px-4 py-2 rounded-full text-sm font-medium bg-primary text-primary-foreground">
             All
           </div>
           {categories.map((category) => (
             <div
               key={category}
-              className="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+              className="px-4 py-2 rounded-full text-sm font-medium bg-muted text-muted-foreground"
             >
               {category}
             </div>

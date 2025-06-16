@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 10 10% 86%;
+    --background: 210 20% 98%;
     --foreground: 215 25% 12%;
     --card: 40 20% 96%;
     --card-foreground: 215 25% 12%;
@@ -33,6 +33,33 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    
+    /* Semantic colors */
+    --success: 142 76% 36%;
+    --success-foreground: 355 7% 97%;
+    --success-hover: 142 76% 32%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+    --warning-hover: 38 92% 45%;
+    --info: 217 91% 60%;
+    --info-foreground: 210 20% 98%;
+    --info-hover: 217 91% 55%;
+    
+    /* Content colors */
+    --text-primary: var(--foreground);
+    --text-secondary: 215 25% 40%;
+    --text-tertiary: 215 25% 55%;
+    --text-hover: 215 25% 20%;
+    
+    /* Surface colors */
+    --surface-primary: var(--background);
+    --surface-secondary: var(--card);
+    --surface-tertiary: var(--muted);
+    
+    /* Console colors */
+    --console-primary: 330 100% 71%;
+    --console-secondary: 39 100% 50%;
+    --console-success: 120 100% 50%;
   }
   .dark {
     --background: 215 25% 8%;
@@ -59,6 +86,33 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
+    /* Semantic colors - dark mode */
+    --success: 142 76% 45%;
+    --success-foreground: 355 7% 97%;
+    --success-hover: 142 76% 50%;
+    --warning: 38 92% 60%;
+    --warning-foreground: 48 96% 89%;
+    --warning-hover: 38 92% 65%;
+    --info: 217 91% 70%;
+    --info-foreground: 210 20% 98%;
+    --info-hover: 217 91% 75%;
+    
+    /* Content colors - dark mode */
+    --text-primary: var(--foreground);
+    --text-secondary: 215 25% 65%;
+    --text-tertiary: 215 25% 55%;
+    --text-hover: 210 20% 100%;
+    
+    /* Surface colors - dark mode */
+    --surface-primary: var(--background);
+    --surface-secondary: var(--card);
+    --surface-tertiary: var(--muted);
+    
+    /* Console colors - same for both themes */
+    --console-primary: 330 100% 71%;
+    --console-secondary: 39 100% 50%;
+    --console-success: 120 100% 50%;
   }
 }
 
@@ -77,5 +131,64 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-brand-primary {
+    @apply text-primary;
+  }
+  
+  .text-brand-secondary {
+    @apply text-text-secondary;
+  }
+  
+  .bg-surface-elevated {
+    @apply bg-surface-secondary border border-border;
+  }
+  
+  .interactive-element {
+    @apply transition-colors hover:bg-accent hover:text-accent-foreground;
+  }
+  
+  .text-semantic-success {
+    @apply text-success;
+  }
+  
+  .text-semantic-warning {
+    @apply text-warning;
+  }
+  
+  .text-semantic-info {
+    @apply text-info;
+  }
+  
+  .bg-semantic-success {
+    @apply bg-success text-success-foreground;
+  }
+  
+  .bg-semantic-warning {
+    @apply bg-warning text-warning-foreground;
+  }
+  
+  .bg-semantic-info {
+    @apply bg-info text-info-foreground;
+  }
+  
+  /* Hover utilities */
+  .hover-text-primary {
+    @apply hover:text-text-hover;
+  }
+  
+  .hover-success {
+    @apply hover:bg-success-hover;
+  }
+  
+  .hover-warning {
+    @apply hover:bg-warning-hover;
+  }
+  
+  .hover-info {
+    @apply hover:bg-info-hover;
   }
 }
