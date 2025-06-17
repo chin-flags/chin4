@@ -10,7 +10,7 @@ export default function SubSectionHeader({
 }: SubSectionHeaderProps) {
   return (
     <div className="my-8">
-      <motion.h3 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-none tracking-tight font-jost">
+      <motion.h3 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-none tracking-tight font-jost">
         <motion.span
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}

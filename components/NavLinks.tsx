@@ -10,12 +10,15 @@ interface NavLinksProps {
   position?: "left" | "right";
 }
 
-const leftNavItems = [{ href: "#reach", text: "rea" }];
+const leftNavItems = [
+  { href: "#reach", text: "rea" },
+  { href: "/teachin", text: "tea" },
+];
 
 const rightNavItems = [
   { href: "#chintro", text: "tro" },
+  { href: "#chinterests", text: "terests", showChevron: false },
   { href: "#chinvolved", text: "volved", showChevron: false },
-  { href: "/chintel", text: "tel", showChevron: false },
 ];
 
 export default function NavLinks({
@@ -40,7 +43,14 @@ export default function NavLinks({
           text={item.text}
           index={index}
           setHoveredNav={setHoveredNav}
-          icon={index === 0 && position === "right" ? <ArrowRight size={16} className="transition-transform group-hover:translate-x-1 animate-pulse opacity-70 hover:opacity-100" /> : undefined}
+          icon={
+            index === 0 && position === "right" ? (
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1 animate-pulse opacity-70 hover:opacity-100"
+              />
+            ) : undefined
+          }
         />
       ))}
     </motion.div>

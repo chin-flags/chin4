@@ -1,6 +1,6 @@
-import SubSectionHeader from "@/components/ui/sub-section-header";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function GoodAt() {
+export default function Interests() {
   const skills = [
     {
       title: "Building Full stack web apps",
@@ -35,23 +35,18 @@ export default function GoodAt() {
 
   return (
     <section className="mb-16 max-w-4xl mx-auto">
-      <SubSectionHeader title="I'm Usually Good At" />
-
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {skills.map((skill, index) => (
-          <div
-            key={index}
-            className="group flex items-start gap-1 p-3 hover:bg-accent/5 rounded-lg transition-colors duration-300"
-          >
-            <div>
-              <h3 className="text-lg sm:text-xl text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
+          <Card key={index} className="h-full">
+            <CardContent className="p-6 h-full flex flex-col">
+              <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                 {skill.title}
               </h3>
-              <p className="text-muted-foreground text-md sm:text-lg leading-relaxed">
+              <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
                 {skill.description}
               </p>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>

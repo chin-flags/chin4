@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -24,6 +24,7 @@ type CommitsData = Record<BranchName, Commit[]>;
 
 export default function GitCareer() {
   const [isBlinking, setIsBlinking] = useState(true);
+  const commitsContainerRef = useRef<HTMLDivElement>(null);
 
   const branches: BranchName[] = [
     "mechanical-engineering",
@@ -33,6 +34,13 @@ export default function GitCareer() {
   const [selectedBranch, setSelectedBranch] = useState<BranchName>(
     "mechanical-engineering"
   );
+
+  // Scroll to top when branch changes
+  useEffect(() => {
+    if (commitsContainerRef.current) {
+      commitsContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [selectedBranch]);
 
   // Blinking cursor effect
   useEffect(() => {
@@ -423,7 +431,7 @@ export default function GitCareer() {
 
         {/* Terminal Output */}
         <div className="bg-surface-secondary rounded border border-border overflow-hidden">
-          <div className="p-2 sm:p-4 overflow-y-auto max-h-[60vh] sm:max-h-[70vh]">
+          <div ref={commitsContainerRef} className="p-2 sm:p-4 overflow-y-auto max-h-[60vh] sm:max-h-[70vh]">
             {/* Command */}
             <div className="mb-4 flex items-center">
               <span className="text-success mr-2">$</span>
@@ -433,7 +441,7 @@ export default function GitCareer() {
             </div>
 
             {/* Git Log Output */}
-            <div className="space-y-2 sm:space-y-3">
+            <div className="space-y-2 sm:space-y-3 commits-container">
               {getCommits().map((commit: Commit, index: number) => (
                 <div
                   key={index}
@@ -486,7 +494,6 @@ export default function GitCareer() {
 
         {/* Terminal Footer */}
         <div className="mt-2 sm:mt-4 text-[10px] sm:text-xs text-text-tertiary flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
-          <span>Press Ctrl+C to exit</span>
           <span>
             {getCommits().length} commits in {selectedBranch}
           </span>

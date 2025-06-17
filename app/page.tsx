@@ -9,6 +9,7 @@ import MotionText from "@/components/MotionText";
 import Chintro from "@/components/chintro";
 import Chinvolved from "@/components/chinvolved";
 import Chinreach from "@/components/chinreach";
+import Chinterests from "@/components/chinterests";
 
 const messages = [
   "chin.com is premium",
@@ -82,9 +83,8 @@ export default function Home() {
       </main>
 
       <Chintro />
-
+      <Chinterests />
       <Chinvolved />
-
       <Chinreach />
     </div>
   );
