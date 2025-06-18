@@ -77,7 +77,7 @@ export default function Home() {
             initialOpacity={0}
           >
             codes, writes and says
-            <span className="font-mono text-sm sm:text-xl ml-2 text-success not-italic opacity-70 block sm:inline">{`//hacky but works`}</span>
+            <span className="font-mono text-sm sm:text-xl ml-2 font-bold text-success not-italic opacity-70 block sm:inline">{`//hacky but works`}</span>
           </MotionText>
         </div>
       </main>

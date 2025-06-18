@@ -39,7 +39,7 @@ export default function About() {
           It&apos;s been a fun journey moving into dev.
           <Link
             href="/sketchin/from-nuts-and-bolts-to-ones-zeros"
-            className="text-orange-500 dark:text-yellow-400 ml-1 hover:underline"
+            className="text-orange-500 dark:text-yellow-400 font-bold ml-1 hover:underline"
           >
             Read the full story
           </Link>

@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
+    --background: 210 20% 94%;
     --foreground: 215 25% 12%;
     --card: 40 20% 96%;
     --card-foreground: 215 25% 12%;
@@ -35,7 +35,7 @@ body {
     --radius: 0.5rem;
     
     /* Semantic colors */
-    --success: 142 76% 36%;
+    --success: 145, 73%, 19%;
     --success-foreground: 355 7% 97%;
     --success-hover: 142 76% 32%;
     --warning: 38 92% 50%;
