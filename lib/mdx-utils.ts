@@ -4,13 +4,16 @@ import matter from 'gray-matter'
 
 export interface FrontMatter {
   title: string
+  subtitle?: string
   description: string
   date?: string
   category?: string
   author?: string
 }
 
+
 export function getMDXContent(contentDir: string, slug: string) {
+
   const filePath = path.join(process.cwd(), 'content', contentDir, `${slug}.mdx`)
   
   if (!fs.existsSync(filePath)) {

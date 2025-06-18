@@ -1,8 +1,17 @@
 "use client";
 import { Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowDownIcon, ExternalLinkIcon } from "lucide-react";
 import NavLink from "./NavLink";
+import { LucideIcon } from "lucide-react";
+
+interface NavItem {
+  href: string;
+  text: string;
+  showChevron?: boolean;
+  icon?: LucideIcon;
+  iconPosition?: "left" | "right";
+}
 
 interface NavLinksProps {
   shouldAnimate?: boolean;
@@ -10,13 +19,18 @@ interface NavLinksProps {
   position?: "left" | "right";
 }
 
-const leftNavItems = [
+const leftNavItems: NavItem[] = [
   { href: "#reach", text: "rea" },
-  { href: "/teachin", text: "tea" },
+  { 
+    href: "/sketchin", 
+    text: "sket",
+    icon: ExternalLinkIcon,
+    iconPosition: "left"
+  },
 ];
 
-const rightNavItems = [
-  { href: "#chintro", text: "tro" },
+const rightNavItems: NavItem[] = [
+  { href: "#chintro", text: "tro", icon: ArrowDownIcon },
   { href: "#chinterests", text: "terests", showChevron: false },
   { href: "#chinvolved", text: "volved", showChevron: false },
 ];
@@ -30,7 +44,7 @@ export default function NavLinks({
 
   return (
     <motion.div
-      className={`flex flex-col sm:gap-1 items-start text-2xl sm:text-3xl md:text-4xl ${
+      className={`flex flex-col sm:gap-1 items-${position === "left" ? "end" : "start"} text-2xl sm:text-3xl md:text-4xl ${
         position === "left" ? "mr-2" : "ml-2"
       }`}
       initial={shouldAnimate ? "hidden" : "visible"}
@@ -44,13 +58,14 @@ export default function NavLinks({
           index={index}
           setHoveredNav={setHoveredNav}
           icon={
-            index === 0 && position === "right" ? (
-              <ArrowRight
+            item.icon ? (
+              <item.icon
                 size={16}
                 className="transition-transform group-hover:translate-x-1 animate-pulse opacity-70 hover:opacity-100"
               />
             ) : undefined
           }
+          iconPosition={item.iconPosition}
         />
       ))}
     </motion.div>

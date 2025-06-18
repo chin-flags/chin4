@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 interface FrontMatter {
   title: string
+  subtitle?: string
   description: string
   date?: string
   category?: string
@@ -16,7 +17,7 @@ interface BlogHeaderProps {
 
 export default function BlogHeader({ frontmatter }: BlogHeaderProps) {
   const [mounted, setMounted] = useState(false);
-
+  console.log("post",frontmatter);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -38,7 +39,10 @@ export default function BlogHeader({ frontmatter }: BlogHeaderProps) {
 
   return (
     <div className="mb-8">
-      <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{frontmatter.title}</h1>
+      <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">{frontmatter.title}</h1>
+      {frontmatter.subtitle && (
+        <h2 className="text-xl font-medium mb-4 text-gray-700 dark:text-gray-300">{frontmatter.subtitle}</h2>
+      )}
       <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
         {frontmatter.date && (
           <time className="flex items-center gap-2">

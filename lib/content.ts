@@ -4,29 +4,26 @@ import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 
-export type ChintelCategory = "Intel" | "Tales" | "Bad Ideas";
-export type ChinfieldCategory = "coding()" | "coding :)" | "coding :(";
-export type ContentCategory = ChintelCategory | ChinfieldCategory;
+export type ContentCategory = "Teachin" | "Searchin" | "Pitchin" | "coding()" | "Cooking :)" | "Burnt :(";
 
-interface BaseContent {
+export interface BaseContent {
   slug: string;
   title: string;
+  subtitle?: string;
   description: string;
   date?: string;
+  category: ContentCategory;
 }
 
-export interface ChintelPost extends BaseContent {
-  category: ChintelCategory;
+export interface SketchinPost extends BaseContent {
   author?: string;
 }
 
-export interface ChinfieldPost extends BaseContent {
-  category: ChinfieldCategory;
-}
+export type ChinfieldPost = BaseContent;
 
 // Content directories
 const CONTENT_DIRS = {
-  chintel: path.join(process.cwd(), "content", "chintel"),
+  sketchin: path.join(process.cwd(), "content", "sketchin"),
   chinfield: path.join(process.cwd(), "content", "chinfield"),
 } as const;
 
@@ -63,6 +60,7 @@ function processContentFile<T extends BaseContent>(
   const baseContent = {
     slug,
     title: frontmatter.title || "Untitled",
+    subtitle: frontmatter.subtitle || "",
     description: frontmatter.description || "",
     category: frontmatter.category || defaultCategory,
     date: dateString,
@@ -78,12 +76,12 @@ function processContentFile<T extends BaseContent>(
   return baseContent as unknown as T;
 }
 
-export async function getChintelPosts(): Promise<ChintelPost[]> {
-  const files = await getMDXFilesFromDirectory(CONTENT_DIRS.chintel);
+export async function getSketchinPosts(): Promise<SketchinPost[]> {
+  const files = await getMDXFilesFromDirectory(CONTENT_DIRS.sketchin);
 
   return files
     .map((file) =>
-      processContentFile<ChintelPost>(file, CONTENT_DIRS.chintel, "Intel", true)
+      processContentFile<SketchinPost>(file, CONTENT_DIRS.sketchin, "Teachin", true)
     )
     .sort((a, b) => {
       if (!a.date) return 1;

@@ -1,13 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
-import { Dispatch, SetStateAction, ReactNode } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface NavLinkProps {
   href: string;
   text: string;
   index: number;
   setHoveredNav: Dispatch<SetStateAction<string | null>>;
-  icon?: ReactNode;
+  icon?: React.ReactElement;
+  iconPosition?: "left" | "right";
 }
 
 const navVariants = {
@@ -29,6 +30,7 @@ export default function NavLink({
   index,
   setHoveredNav,
   icon,
+  iconPosition = "right",
 }: NavLinkProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith("#")) {
@@ -58,8 +60,9 @@ export default function NavLink({
         onMouseEnter={() => setHoveredNav(text)}
         onMouseLeave={() => setHoveredNav(null)}
       >
+        {icon && iconPosition === "left" && <span className="mr-1">{icon}</span>}
         <span>{text}</span>
-        {icon && <span className="ml-1">{icon}</span>}
+        {icon && iconPosition === "right" && <span className="ml-1">{icon}</span>}
       </a>
     </motion.div>
   );

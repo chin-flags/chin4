@@ -8,7 +8,7 @@ interface TitleAnimationProps {
 
 export default function TitleAnimation({ shouldAnimate = true, hoveredNav }: TitleAnimationProps) {
   // Left nav items that should color both "Ch" and "in"
-  const leftNavItems = ["rea", "tea"];
+  const leftNavItems = ["rea", "sket"];
   const isLeftNavHovered = hoveredNav && leftNavItems.includes(hoveredNav);
 
   return (

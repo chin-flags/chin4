@@ -9,7 +9,7 @@ interface BlogLayoutProps {
 
 export default function BlogLayout({ 
   children, 
-  backHref = "/chintel", 
+  backHref = "/sketchin", 
   backText = "Back to Blog" 
 }: BlogLayoutProps) {
   return (

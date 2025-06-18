@@ -15,10 +15,10 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
   try {
     const slug = (await params).slug;
-    const { frontmatter, content } = getMDXContent("teachin", slug);
+    const { frontmatter, content } = getMDXContent("sketchin", slug);
 
     return (
-      <BlogLayout backHref="/teachin" backText="Back to Teachin">
+      <BlogLayout backHref={`/sketchin`} backText={`Back to sketchin`}>
         <BlogHeader frontmatter={frontmatter} />
         <div className="prose lg:prose-2xl dark:prose-invert max-w-none font-jost">
           <MDXRemote
