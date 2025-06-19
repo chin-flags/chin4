@@ -92,6 +92,7 @@ export default function Interests() {
                   </h3>
                   <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
                   I&apos;m fairly good at building full stack webapps (like this one). My stack? Whatever works. Right now, it&apos;s mostly Next, Node, Tailwind, and vibes.
+
                   </p>
                 </div>
               </div>

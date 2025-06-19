@@ -31,10 +31,6 @@ export default function About() {
           until the robots take over.
         </p>
         <p>
-          I write code mainly JavaScript for building full-stack web apps.
-          I&apos;ve Started with <span className="italic">localhost</span>, then
-          servers, then serverless. and now, no central server.
-          <br />
           But before diving into development, I was a mechanical engineer.
           It&apos;s been a fun journey moving into dev.
           <Link
