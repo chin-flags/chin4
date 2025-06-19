@@ -140,18 +140,18 @@ export const mdxComponents = {
     }
     
     return (
-      <p {...props} className="mb-4 text-lg leading-relaxed text-text-secondary">
+      <p {...props} className="mb-4 text-lg leading-relaxed text-foreground">
         {children}
       </p>
     );
   },
   ul: ({ children, ...props }: { children: ReactNode; [key: string]: unknown }) => (
-    <ul {...props} className="list-disc list-inside mb-4 space-y-2 text-text-secondary">
+    <ul {...props} className="list-disc list-inside mb-4 space-y-2 text-foreground">
       {children}
     </ul>
   ),
   ol: ({ children, ...props }: { children: ReactNode; [key: string]: unknown }) => (
-    <ol {...props} className="list-decimal list-inside mb-4 space-y-2 text-text-secondary">
+    <ol {...props} className="list-decimal list-inside mb-4 space-y-2 text-foreground">
       {children}
     </ol>
   ),
@@ -161,7 +161,7 @@ export const mdxComponents = {
     </li>
   ),
   blockquote: ({ children, ...props }: { children: ReactNode; [key: string]: unknown }) => (
-    <blockquote {...props} className="border-l-4 border-info pl-4 my-6 italic text-text-secondary bg-muted py-2 rounded-r">
+    <blockquote {...props} className="border-l-4 border-info pl-4 my-6 italic text-foreground bg-muted py-2 rounded-r">
       {children}
     </blockquote>
   ),

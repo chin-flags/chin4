@@ -1,12 +1,15 @@
+import React, { useState } from "react";
 import {
   FaTwitter,
   FaLinkedin,
   FaEnvelope,
   FaGithub,
   FaTelegram,
+  FaDiscord,
 } from "react-icons/fa";
 
-export default function contact() {
+export default function Contact() {
+  const [copied, setCopied] = useState(false);
   return (
     <div className="flex flex-wrap justify-center gap-4 px-4">
       <a
@@ -46,12 +49,26 @@ export default function contact() {
         <span>Telegram</span>
       </a>
       <a
-        href="mailto:chinthakaflags@gmail.com"
-        className="flex items-center space-x-2 text-text-secondary hover:text-success-hover transition-colors text-sm sm:text-base"
+        href="https://discord.com/users/chin_flags"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center space-x-2 text-text-secondary hover:text-indigo-400 transition-colors text-sm sm:text-base"
+      >
+        <FaDiscord className="text-lg sm:text-xl" />
+        <span>Discord</span>
+      </a>
+      <button
+        type="button"
+        onClick={() => {
+          navigator.clipboard.writeText("chinthakaflags@gmail.com");
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }}
+        className="flex items-center space-x-2 text-text-secondary hover:text-success-hover transition-colors text-sm sm:text-base focus:outline-none"
       >
         <FaEnvelope className="text-lg sm:text-xl" />
-        <span>Email</span>
-      </a>
+        <span>{copied ? "Copied!" : "Email"}</span>
+      </button>
     </div>
   );
 }

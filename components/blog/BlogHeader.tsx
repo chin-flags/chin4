@@ -69,11 +69,6 @@ export default function BlogHeader({ frontmatter }: BlogHeaderProps) {
           </span>
         )}
       </div>
-      {frontmatter.description && (
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-          {frontmatter.description}
-        </p>
-      )}
     </div>
   )
 } 

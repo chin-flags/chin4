@@ -10,7 +10,7 @@ export default function About() {
           The most challenging question in an interview isn&apos;t about
           algorithms it&apos;s &quot;Tell me about yourself.&quot;
         </p>
-        <p>I don&apos;t know how to answer either.</p>
+        <p>I don&apos;t know how to answer both.</p>
         <p>
           I&apos;m constantly trying to figure it out, and most of the time,
           there&apos;s no definitive answer. So I&apos;ll fall back to the most
@@ -18,7 +18,7 @@ export default function About() {
         </p>
         <p>
           My name is{" "}
-          <span className="font-bold text-orange-500 dark:text-yellow-400">
+          <span className="font-bold">
             Chinthaka
           </span>
           , it means “philosopher” or “thinker” in my language, Sinhala. I like
@@ -39,7 +39,8 @@ export default function About() {
           It&apos;s been a fun journey moving into dev.
           <Link
             href="/sketchin/from-nuts-and-bolts-to-ones-zeros"
-            className="text-orange-500 dark:text-yellow-400 font-bold ml-1 hover:underline"
+            target="_new"
+            className="text-[#FFC107] dark:text-yellow-400 font-bold ml-1 hover:underline"
           >
             Read the full story
           </Link>

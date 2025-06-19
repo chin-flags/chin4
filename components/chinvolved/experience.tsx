@@ -7,8 +7,8 @@ export default function Experience() {
       period: "Oct 2024 – Present",
       description: [
         "Helped developers navigate the Delegation Toolkit from answering 'How do I?' to 'Why isn't this working?'",
-        "Built a CLI tool and example repos – because if you can't make it easy, why bother?",
-        "Hosted livestreams, workshops, and hackathons – keeping the community curious and engaged.",
+        "Built a CLI tool and example repos.",
+        "Hosted livestreams, workshops, and hackathons.",
         "Worked closely with the engineering team to suggest SDK improvements and smooth out the rough edges."
       ]
     },
@@ -95,7 +95,7 @@ export default function Experience() {
               </p>
               <ul className="space-y-2">
                 {experience.description.map((item, idx) => (
-                  <li key={idx} className="text-muted-foreground text-md sm:text-lg leading-relaxed">
+                  <li key={idx} className="text-foreground text-md sm:text-lg leading-relaxed">
                     • {item}
                   </li>
                 ))}

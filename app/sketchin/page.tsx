@@ -7,11 +7,7 @@ import Image from "next/image";
 export default async function BlogPage() {
   const posts = await getSketchinPosts();
 
-  const BLOG_CATEGORIES: ContentCategory[] = [
-    "Teachin",
-    "Searchin",
-    "Pitchin",
-  ];
+  const BLOG_CATEGORIES: ContentCategory[] = ["Teachin", "Searchin", "Pitchin"];
 
   return (
     <div className="min-h-screen bg-surface-primary py-8 px-4 sm:px-6 lg:px-8">
@@ -20,30 +16,30 @@ export default async function BlogPage() {
           title="sket"
           subheader="some teachin, soul searchin and bad pitchin"
         />
-        
-        <div className="mb-8">
-          <Link href="/sinhala" className="block">
-            <div className="bg-secondary rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Can read this text? Then you&apos;ll love my other blog
-                </h3>
-              <div className="flex justify-center p-4">
-                <Image
-                  src="/aniwarathe.png"
-                  alt="Sinhala Blog"
-                  width={200}
-                  height={100}
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  Can read this text? Then you&apos;ll love my other blog
-                </h3>
+        {/* <div className="mb-8">
+          <Link href="https://aniwarathe.lk/"  className="block group" target="_blank" rel="noopener noreferrer">
+            <div className="bg-surface-secondary border-2  rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border-warning">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-6">
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold text-primary mb-2 flex items-center justify-center md:justify-start gap-2">
+                    Can you read <span className="text-warning font-extrabold">this?</span>
+                    <Image
+                      src="/aniwarathe.png"
+                      alt="Sinhala Blog - Can you read this?"
+                      width={100}
+                      height={50}
+                      className="object-contain rounded-md ml-1"
+                    />
+                  </h3>
+                  <p className="text-lg text-text-secondary mb-4">
+                    If you can, you might love my Sinhala blog!
+                  </p>
+                </div>
+
               </div>
             </div>
           </Link>
-        </div>
+        </div> */}
 
         <GenericPostGrid
           posts={posts}

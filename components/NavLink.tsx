@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 
 interface NavLinkProps {
@@ -53,8 +54,9 @@ export default function NavLink({
 
   return (
     <motion.div variants={navVariants} custom={index} className="mx-0">
-      <a
+      <Link
         href={href}
+        target="_new"
         onClick={handleClick}
         className="group flex items-center gap-2 hover:text-orange-500 dark:hover:text-yellow-400 transition-colors font-jost duration-300"
         onMouseEnter={() => setHoveredNav(text)}
@@ -63,7 +65,7 @@ export default function NavLink({
         {icon && iconPosition === "left" && <span className="mr-1">{icon}</span>}
         <span>{text}</span>
         {icon && iconPosition === "right" && <span className="ml-1">{icon}</span>}
-      </a>
+      </Link>
     </motion.div>
   );
 }
