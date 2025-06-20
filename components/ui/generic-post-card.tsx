@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 interface GenericPost {
   slug: string;
@@ -17,26 +16,6 @@ interface GenericPostCardProps {
 }
 
 export function GenericPostCard({ post, basePath }: GenericPostCardProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const formatDate = (dateString: string) => {
-    if (!mounted || !dateString) {
-      return dateString || ""; // Return empty string if no date
-    }
-    try {
-      return new Date(dateString).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    } catch {
-      return dateString; // Return original string if parsing fails
-    }
-  };
 
   return (
     <article className="group relative ounded-xl p-3">
