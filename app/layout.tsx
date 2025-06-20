@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/header";
 import { Analytics } from "@vercel/analytics/next"
-//import { ConsoleGreeting } from "@/components/console-greeting";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/header";
 
 const jost = Jost({
   variable: "--font-jost",
@@ -49,11 +47,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <ConsoleGreeting /> */}
           <Header />
           {children}
           <Analytics/>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

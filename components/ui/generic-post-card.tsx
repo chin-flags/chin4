@@ -39,12 +39,12 @@ export function GenericPostCard({ post, basePath }: GenericPostCardProps) {
   };
 
   return (
-    <article className="group relative bg-surface-secondary rounded-xl p-3 shadow-sm hover:shadow-md transition-all duration-200">
+    <article className="group relative ounded-xl p-3">
       <Link href={`${basePath}/${post.slug}`} className="space-y-4 block">
         <div className="space-y-2">
           <div className="flex justify-between items-start gap-4">
             <div className="space-y-1">
-              <h2 className="text-xl sm:text-xl text-foreground hover:text-orange-500 dark:hover:text-yellow-400 transition-colors duration-200">
+              <h2 className="text-xl sm:text-xl text-foreground hover:text-yello-800 dark:hover:text-yellow-400 transition-colors duration-200">
                 {post.title}
               </h2>
               {post.subtitle && (
@@ -53,24 +53,6 @@ export function GenericPostCard({ post, basePath }: GenericPostCardProps) {
                 </h3>
               )}
             </div>
-            {post.date && (
-              <time className="flex items-center gap-2 shrink-0 whitespace-nowrap text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-muted-foreground">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                {formatDate(post.date)}
-              </time>
-            )}
           </div>
           {/* <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
             <span className="shrink-0 whitespace-nowrap text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-muted-foreground">

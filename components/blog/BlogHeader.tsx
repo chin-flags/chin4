@@ -17,14 +17,14 @@ interface BlogHeaderProps {
 
 export default function BlogHeader({ frontmatter }: BlogHeaderProps) {
   const [mounted, setMounted] = useState(false);
-  console.log("post",frontmatter);
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const formatDate = (dateString: string) => {
     if (!mounted || !dateString) {
-      return dateString || ''; // Return empty string if no date
+      return dateString || ''; 
     }
     try {
       return new Date(dateString).toLocaleDateString('en-US', {
@@ -33,7 +33,7 @@ export default function BlogHeader({ frontmatter }: BlogHeaderProps) {
         day: 'numeric'
       });
     } catch {
-      return dateString; // Return original string if parsing fails
+      return dateString;
     }
   };
 

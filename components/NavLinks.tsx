@@ -11,6 +11,7 @@ interface NavItem {
   showChevron?: boolean;
   icon?: LucideIcon;
   iconPosition?: "left" | "right";
+  tooltip?: string;
 }
 
 interface NavLinksProps {
@@ -27,13 +28,14 @@ const leftNavItems: NavItem[] = [
     href: isProduction ? "https://sket.chin4.com" : "/sketchin",
     text: "sket",
     icon: ExternalLinkIcon, iconPosition: "left" ,
+    tooltip: "Bolg"
   },
 ];
 
 const rightNavItems: NavItem[] = [
   { href: "#chintro", text: "tro", icon: ArrowDownIcon },
   { href: "#chinterests", text: "terests", showChevron: false },
-  { href: "#chinvolved", text: "volved", showChevron: false },
+  { href: "#chinvolved", text: "volved", showChevron: false},
 ];
 
 export default function NavLinks({
@@ -67,6 +69,7 @@ export default function NavLinks({
             ) : undefined
           }
           iconPosition={item.iconPosition}
+          tooltip={item.tooltip}
         />
       ))}
     </motion.div>

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./ui/tooltip";
 
 interface NavLinkProps {
   href: string;
@@ -10,6 +11,7 @@ interface NavLinkProps {
   setHoveredNav: Dispatch<SetStateAction<string | null>>;
   icon?: React.ReactElement;
   iconPosition?: "left" | "right";
+  tooltip?: string;
 }
 
 const navVariants = {
@@ -32,6 +34,7 @@ export default function NavLink({
   setHoveredNav,
   icon,
   iconPosition = "right",
+  tooltip,
 }: NavLinkProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith("#")) {
@@ -52,20 +55,33 @@ export default function NavLink({
     }
   };
 
+  const linkElement = (
+    <Link
+      href={href}
+      target="_new"
+      onClick={handleClick}
+      className="group flex items-center gap-2 hover:text-orange-500 dark:hover:text-yellow-400 transition-colors font-jost duration-300"
+      onMouseEnter={() => setHoveredNav(text)}
+      onMouseLeave={() => setHoveredNav(null)}
+    >
+      {icon && iconPosition === "left" && <span className="mr-1">{icon}</span>}
+      <span>{text}</span>
+      {icon && iconPosition === "right" && <span className="ml-1">{icon}</span>}
+    </Link>
+  );
+
   return (
     <motion.div variants={navVariants} custom={index} className="mx-0">
-      <Link
-        href={href}
-        target="_new"
-        onClick={handleClick}
-        className="group flex items-center gap-2 hover:text-orange-500 dark:hover:text-yellow-400 transition-colors font-jost duration-300"
-        onMouseEnter={() => setHoveredNav(text)}
-        onMouseLeave={() => setHoveredNav(null)}
-      >
-        {icon && iconPosition === "left" && <span className="mr-1">{icon}</span>}
-        <span>{text}</span>
-        {icon && iconPosition === "right" && <span className="ml-1">{icon}</span>}
-      </Link>
+      {tooltip ? (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>{linkElement}</TooltipTrigger>
+            <TooltipContent>{tooltip}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      ) : (
+        linkElement
+      )}
     </motion.div>
   );
 }

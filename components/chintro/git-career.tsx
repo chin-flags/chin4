@@ -38,7 +38,7 @@ export default function GitCareer() {
   // Scroll to top when branch changes
   useEffect(() => {
     if (commitsContainerRef.current) {
-      commitsContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      commitsContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [selectedBranch]);
 
@@ -176,7 +176,8 @@ export default function GitCareer() {
       },
       {
         date: "Feb 22, 2002",
-        message: "Did it again. Maybe dead men and elephants are funny after all",
+        message:
+          "Did it again. Maybe dead men and elephants are funny after all",
         author: "chin",
         hash: "f6g789",
       },
@@ -376,129 +377,145 @@ export default function GitCareer() {
   };
 
   return (
-    <div className="mb-16 w-full mx-auto font-mono shadow-2xl rounded-lg overflow-hidden border border-border bg-surface-secondary">
-      {/* Terminal Header */}
-      <div className="flex items-center justify-between bg-muted px-2 sm:px-4 py-2 border-b border-border">
-        <div className="flex items-center space-x-2">
-          <div className="flex space-x-2">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-destructive"></div>
-            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-warning"></div>
-            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-success"></div>
+    <>
+      <div className="mb-16 w-full mx-auto font-mono shadow-2xl rounded-lg overflow-hidden border border-border bg-surface-secondary">
+        {/* Terminal Header */}
+        <div className="flex items-center justify-between bg-muted px-2 sm:px-4 py-2 border-b border-border">
+          <div className="flex items-center space-x-2">
+            <div className="flex space-x-2">
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-destructive"></div>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-warning"></div>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-success"></div>
+            </div>
+            <span className="text-text-secondary text-xs sm:text-sm ml-2 sm:ml-4">
+              Terminal — chin@life-story
+            </span>
           </div>
-          <span className="text-text-secondary text-xs sm:text-sm ml-2 sm:ml-4">
-            Terminal — chin@life-story
-          </span>
-        </div>
-      </div>
-
-      {/* Terminal Content */}
-      <div className="bg-surface-tertiary text-success p-2 sm:p-4">
-        {/* Command Line Header */}
-        <div className="flex flex-col text-sm sm:text-base sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-info font-bold text-sm sm:text-base">~/life-story</span>
-            <span className="text-text-tertiary">(</span>
-            <span className="text-warning">{selectedBranch}</span>
-            <span className="text-text-tertiary">)</span>
-          </div>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full sm:w-auto bg-surface-secondary text-success hover:bg-surface-tertiary border-border hover:border-success transition-all duration-200 text-sm"
-              >
-                <GitBranch className="mr-2 w-3 h-3 sm:w-4 sm:h-4" /> Switch Branch
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-surface-secondary border-border w-[200px]">
-              {branches.map((branch) => (
-                <DropdownMenuItem
-                  key={branch}
-                  onClick={() => setSelectedBranch(branch)}
-                  className={`hover:bg-surface-tertiary cursor-pointer transition-colors text-sm ${
-                    branch === selectedBranch
-                      ? "bg-surface-tertiary text-warning"
-                      : "text-text-secondary hover:text-foreground"
-                  }`}
-                >
-                  {branch}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
 
-        {/* Terminal Output */}
-        <div className="bg-surface-secondary rounded border border-border overflow-hidden">
-          <div ref={commitsContainerRef} className="p-2 sm:p-4 overflow-y-auto max-h-[60vh] sm:max-h-[70vh]">
-            {/* Command */}
-            <div className="mb-4 flex items-center">
-              <span className="text-success mr-2">$</span>
-              <span className="text-success text-sm sm:text-base break-all">
-                git log --oneline --decorate {selectedBranch}
+        {/* Terminal Content */}
+        <div className="bg-surface-secondary text-success p-2 sm:p-4">
+          {/* Command Line Header */}
+          <div className="flex flex-col text-sm sm:text-base sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-info font-bold text-sm sm:text-base">
+                ~/life-story
               </span>
+              <span className="text-text-tertiary">(</span>
+              <span className="text-warning">{selectedBranch}</span>
+              <span className="text-text-tertiary">)</span>
             </div>
 
-            {/* Git Log Output */}
-            <div className="space-y-2 sm:space-y-3 commits-container">
-              {getCommits().map((commit: Commit, index: number) => (
-                <div
-                  key={index}
-                  className="flex hover:bg-surface-tertiary/50 p-1.5 sm:p-2 rounded transition-colors"
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto bg-surface-secondary text-success hover:bg-surface-tertiary border-border hover:border-success transition-all duration-200 text-sm"
                 >
-                  <div className="text-warning mr-2 sm:mr-3 min-w-[7ch] sm:min-w-[8ch] font-bold text-xs sm:text-sm">
-                    {commit.hash.substring(0, 7)}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-success mb-0.5 sm:mb-1 text-sm sm:text-base break-words">{commit.message}</p>
-                    <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-text-tertiary gap-0.5 sm:gap-0">
-                      <span>
-                        Author:{" "}
-                        <span className="text-info">{commit.author}</span>
-                      </span>
-                      <span className="hidden sm:inline mx-2">|</span>
-                      <span>
-                        Date:{" "}
-                        <span className="text-text-secondary">
-                          {commit.date}
+                  <GitBranch className="mr-2 w-3 h-3 sm:w-4 sm:h-4" /> Switch
+                  Branch
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-surface-secondary border-border w-[200px]">
+                {branches.map((branch) => (
+                  <DropdownMenuItem
+                    key={branch}
+                    onClick={() => setSelectedBranch(branch)}
+                    className={`hover:bg-surface-tertiary cursor-pointer transition-colors text-sm ${
+                      branch === selectedBranch
+                        ? "bg-surface-tertiary text-warning"
+                        : "text-text-secondary hover:text-foreground"
+                    }`}
+                  >
+                    {branch}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Terminal Output */}
+          <div className="bg-surface-secondary rounded border border-border overflow-hidden">
+            <div
+              ref={commitsContainerRef}
+              className="p-2 sm:p-4 overflow-y-auto max-h-[60vh] sm:max-h-[70vh]"
+            >
+              {/* Command */}
+              <div className="mb-4 flex items-center">
+                <span className="text-success mr-2">$</span>
+                <span className="text-success text-sm sm:text-base break-all">
+                  git log --oneline --decorate {selectedBranch}
+                </span>
+              </div>
+
+              {/* Git Log Output */}
+              <div className="space-y-2 sm:space-y-3 commits-container">
+                {getCommits().map((commit: Commit, index: number) => (
+                  <div
+                    key={index}
+                    className="flex hover:bg-surface-tertiary/50 p-1.5 sm:p-2 rounded transition-colors"
+                  >
+                    <div className="text-warning mr-2 sm:mr-3 min-w-[7ch] sm:min-w-[8ch] font-bold text-xs sm:text-sm">
+                      {commit.hash.substring(0, 7)}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-success mb-0.5 sm:mb-1 text-sm sm:text-base break-words">
+                        {commit.message}
+                      </p>
+                      <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-text-tertiary gap-0.5 sm:gap-0">
+                        <span>
+                          Author:{" "}
+                          <span className="text-info">{commit.author}</span>
                         </span>
-                      </span>
-                      {commit.branch && (
-                        <>
-                          <span className="hidden sm:inline mx-2">|</span>
-                          <span className="text-warning">
-                            ({commit.branch})
+                        <span className="hidden sm:inline mx-2">|</span>
+                        <span>
+                          Date:{" "}
+                          <span className="text-text-secondary">
+                            {commit.date}
                           </span>
-                        </>
-                      )}
+                        </span>
+                        {commit.branch && (
+                          <>
+                            <span className="hidden sm:inline mx-2">|</span>
+                            <span className="text-warning">
+                              ({commit.branch})
+                            </span>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Command Prompt */}
-            <div className="mt-4 sm:mt-6 flex items-center">
-              <span className="text-success mr-2">$</span>
-              <span
-                className={`text-success ${
-                  isBlinking ? "opacity-100" : "opacity-0"
-                } transition-opacity`}
-              >
-                █
-              </span>
+              {/* Command Prompt */}
+              <div className="mt-4 sm:mt-6 flex items-center">
+                <span className="text-success mr-2">$</span>
+                <span
+                  className={`text-success ${
+                    isBlinking ? "opacity-100" : "opacity-0"
+                  } transition-opacity`}
+                >
+                  █
+                </span>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Terminal Footer */}
-        <div className="mt-2 sm:mt-4 text-[10px] sm:text-xs text-text-tertiary flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
-          <span>
-            {getCommits().length} commits in {selectedBranch}
-          </span>
+          {/* Terminal Footer */}
+          <div className="mt-2 sm:mt-4 text-[10px] sm:text-xs text-text-tertiary flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
+            <span>
+              {getCommits().length} commits in {selectedBranch}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+      {/* Footer Note outside the container */}
+      <div className="mt-2  text-md text-text-tertiary italic">
+        Apologies, non-tech folks. That thing above mimics something called Git
+        log, where software developers document their mistakes and
+        regrets when making software
+      </div>
+    </>
   );
 }
