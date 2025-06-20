@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "Chin's personal website",
   metadataBase: new URL("https://chin4.com"), // Important for absolute URLs
   openGraph: {
-    title: "Chin4",
+    title: "Chin",
     description: "Chin's personal website",
     url: "https://chin4.com",
     siteName: "Chin4",
