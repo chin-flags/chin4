@@ -22,7 +22,7 @@ interface NavLinksProps {
 const leftNavItems: NavItem[] = [
   { href: "#reach", text: "rea" },
   { 
-    href: "https://sket.chin4.com/", 
+    href: "/sketchin", 
     text: "sket",
     icon: ExternalLinkIcon,
     iconPosition: "left"
