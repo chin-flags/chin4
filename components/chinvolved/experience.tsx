@@ -54,7 +54,7 @@ export default function Experience() {
           >
             <div>
               <div className="flex justify-between items-start mb-1">
-                <h3 className="text-xl sm:text-2xl text-foreground group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                   {experience.title}
                 </h3>
               </div>
