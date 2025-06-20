@@ -1,0 +1,14 @@
+{
+    "rewrites": [
+      {
+        "source": "/(.*)",
+        "destination": "/sketchin/$1",
+        "has": [
+          {
+            "type": "host",
+            "value": "sket.chin4.com"
+          }
+        ]
+      }
+    ]
+  }

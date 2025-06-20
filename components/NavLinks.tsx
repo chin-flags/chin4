@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowDownIcon, ExternalLinkIcon } from "lucide-react";
 import NavLink from "./NavLink";
@@ -22,27 +22,39 @@ interface NavLinksProps {
 
 const isProduction = process.env.NODE_ENV === "production";
 
-const leftNavItems: NavItem[] = [
-  { href: "#reach", text: "rea" },
-  {
-    href: isProduction ? "https://sket.chin4.com" : "/sketchin",
-    text: "sket",
-    icon: ExternalLinkIcon, iconPosition: "left" ,
-    tooltip: "Bolg"
-  },
-];
-
-const rightNavItems: NavItem[] = [
-  { href: "#chintro", text: "tro", icon: ArrowDownIcon },
-  { href: "#chinterests", text: "terests", showChevron: false },
-  { href: "#chinvolved", text: "volved", showChevron: false},
-];
+const getSketchinHref = () => {
+  if (typeof window !== "undefined") {
+    if (window.location.hostname.startsWith("sket.")) {
+      return "/";
+    }
+  }
+  return isProduction ? "https://sket.chin4.com" : "/sketchin";
+};
 
 export default function NavLinks({
   shouldAnimate = true,
   setHoveredNav,
   position = "right",
 }: NavLinksProps) {
+  const sketchinHref = useMemo(getSketchinHref, []);
+
+  const leftNavItems: NavItem[] = [
+    { href: "#reach", text: "rea" },
+    {
+      href: sketchinHref,
+      text: "sket",
+      icon: ExternalLinkIcon,
+      iconPosition: "left",
+      tooltip: "Bolg"
+    },
+  ];
+
+  const rightNavItems: NavItem[] = [
+    { href: "#chintro", text: "tro", icon: ArrowDownIcon },
+    { href: "#chinterests", text: "terests", showChevron: false },
+    { href: "#chinvolved", text: "volved", showChevron: false},
+  ];
+
   const navItems = position === "left" ? leftNavItems : rightNavItems;
 
   return (
