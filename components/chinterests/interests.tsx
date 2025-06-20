@@ -30,10 +30,10 @@ export default function Interests() {
                 </div>
               </div>
               <div className="flex flex-col flex-1 py-6 px-6 order-1 md:order-none">
-                <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="font-bold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                   Writing stuff
                 </h3>
-                <div className="text-muted-foreground text-md sm:text-lg leading-relaxed mb-4">
+                <div className="text-muted-foreground text-lg sm:text-lg leading-relaxed mb-4">
                   <p>
                     If the word{" "}
                     <Link
@@ -66,20 +66,20 @@ export default function Interests() {
        
         <Card className="h-full">
           <CardContent className="p-6 h-full flex flex-col">
-            <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+            <h3 className="font-bold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
               Dealing with LLMs
             </h3>
-            <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
+            <p className="text-muted-foreground text-lg sm:text-lg leading-relaxed flex-grow">
               I usually say thank you when a LLM responds to me with good answers, even though we assume that they are soulless. Further I build LLM apps for fun
             </p>
           </CardContent>
         </Card>
         <Card className="h-full">
           <CardContent className="p-6 h-full flex flex-col">
-            <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+            <h3 className="font-bold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
               Blockchain, web3 and other related stuff
             </h3>
-            <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
+            <p className="text-muted-foreground text-lg sm:text-lg leading-relaxed flex-grow">
               I build web3 apps and navigate the decentralized world.
             </p>
           </CardContent>
@@ -97,11 +97,11 @@ export default function Interests() {
                 />
               </div>
               <div className="flex flex-col flex-1 py-6 px-6 order-1 md:order-none">
-                <div className="text-muted-foreground text-md sm:text-lg leading-relaxed mb-4">
-                  <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                <div className="text-muted-foreground text-lg sm:text-lg leading-relaxed mb-4">
+                  <h3 className="font-bold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                     Building Full stack web apps
                   </h3>
-                  <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
+                  <p className="text-muted-foreground text-lg sm:text-lg leading-relaxed flex-grow">
                   I&apos;m fairly good at building full stack webapps (like this one). My stack? Whatever works. Right now, it&apos;s mostly Next, Node, Tailwind, and vibes.
 
                   </p>
@@ -112,20 +112,20 @@ export default function Interests() {
         </div>
         <Card className="h-full">
           <CardContent className="p-6 h-full flex flex-col">
-            <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+            <h3 className="font-bold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
               Fixing leaking pipes, including gas and water
             </h3>
-            <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
+            <p className="text-muted-foreground text-lg sm:text-lg leading-relaxed flex-grow">
               Carried this skill from my previous job. I still do these fixes for a non profit organisation called &quot;Home&quot;
             </p>
           </CardContent>
         </Card>
         <Card className="h-full">
           <CardContent className="p-6 h-full flex flex-col">
-            <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+            <h3 className="font-bold text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
               Raising my 3-year old daughter
             </h3>
-            <p className="text-muted-foreground text-md sm:text-lg leading-relaxed flex-grow">
+            <p className="text-muted-foreground text-lg sm:text-lg leading-relaxed flex-grow">
               Our home&apos;s junior dev, whose job hasn&apos;t been replaced by AI yet, likely won&apos;t be, because no LLM is trained to handle the infinite &quot;but why?&quot; loop, and who tests LLMs with prompts like &quot;asfuhgf kjsfskajfh&quot;
             </p>
           </CardContent>
