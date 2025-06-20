@@ -95,7 +95,7 @@ export default function Experience() {
               </p>
               <ul className="space-y-2">
                 {experience.description.map((item, idx) => (
-                  <li key={idx} className="text-foreground text-lg sm:text-lg leading-relaxed">
+                  <li key={idx} className="text-muted-foreground text-lg sm:text-lg leading-relaxed">
                     • {item}
                   </li>
                 ))}

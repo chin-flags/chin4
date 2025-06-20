@@ -44,7 +44,7 @@ export function GenericPostCard({ post, basePath }: GenericPostCardProps) {
         <div className="space-y-2">
           <div className="flex justify-between items-start gap-4">
             <div className="space-y-1">
-              <h2 className="text-lg sm:text-xl font-bold text-foreground hover:text-orange-500 dark:hover:text-yellow-400 transition-colors duration-200">
+              <h2 className="text-xl sm:text-xl text-foreground hover:text-orange-500 dark:hover:text-yellow-400 transition-colors duration-200">
                 {post.title}
               </h2>
               {post.subtitle && (
@@ -72,11 +72,11 @@ export function GenericPostCard({ post, basePath }: GenericPostCardProps) {
               </time>
             )}
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
+          {/* <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary">
             <span className="shrink-0 whitespace-nowrap text-sm font-medium px-3 py-1.5 rounded-full bg-muted text-muted-foreground">
               {post.category}
             </span>
-          </div>
+          </div> */}
         </div>
       </Link>
     </article>

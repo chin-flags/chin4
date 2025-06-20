@@ -82,21 +82,39 @@ const Video = ({ src, title = "Video", ...props }: VideoProps) => {
 
 export const mdxComponents = {
   pre: ({ children, ...props }: PreProps) => {
+    // Support MDX's <pre><code className="language-js">...</code></pre> structure
+    let className = '';
+    let codeString = '';
+    if (Children.count(children) === 1 && isValidElement(children)) {
+      const childProps = (children as React.ReactElement<any>).props || {};
+      className = typeof childProps.className === 'string' ? childProps.className : '';
+      codeString = typeof childProps.children === 'string' ? childProps.children : '';
+    }
+    // Extract language from className (e.g., language-js)
+    const match = className.match(/language-(\w+)/);
+    const language = match ? match[1] : '';
     return (
       <pre {...props} className="overflow-x-auto p-4 bg-muted rounded-lg border border-border my-6">
-        {children}
+        <code className={className} data-language={language}>
+          {codeString}
+        </code>
       </pre>
-    )
+    );
   },
-  code: ({ children, ...props }: CodeProps) => {
-    const codeHTML = highlight(children)
+  code: ({ children = '', className = '', ...props }: CodeProps) => {
+    // Only highlight if not inline code
+    className = typeof className === 'string' ? className : '';
+    const match = className.match(/language-(\w+)/);
+    const language = match ? match[1] : '';
+    const codeHTML = highlight(String(children), language);
     return (
-      <code 
-        dangerouslySetInnerHTML={{ __html: codeHTML }} 
-        {...props} 
-        className="bg-muted px-1 py-0.5 rounded text-sm font-mono"
+      <code
+        dangerouslySetInnerHTML={{ __html: codeHTML }}
+        className={`bg-muted px-1 py-0.5 rounded text-sm font-mono ${className}`}
+        data-language={language}
+        {...props}
       />
-    )
+    );
   },
   img: ({ src, alt, width = 800, height = 600, ...props }: ImageProps) => {
     return (
