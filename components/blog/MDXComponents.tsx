@@ -86,7 +86,7 @@ export const mdxComponents = {
     let className = '';
     let codeString = '';
     if (Children.count(children) === 1 && isValidElement(children)) {
-      const childProps = (children as React.ReactElement<any>).props || {};
+      const childProps = (children as React.ReactElement<{ className?: string; children?: string }>).props || {};
       className = typeof childProps.className === 'string' ? childProps.className : '';
       codeString = typeof childProps.children === 'string' ? childProps.children : '';
     }
@@ -103,14 +103,14 @@ export const mdxComponents = {
   },
   code: ({ children = '', className = '', ...props }: CodeProps) => {
     // Only highlight if not inline code
-    className = typeof className === 'string' ? className : '';
-    const match = className.match(/language-(\w+)/);
+    const classNameStr = typeof className === 'string' ? className : '';
+    const match = classNameStr.match(/language-(\w+)/);
     const language = match ? match[1] : '';
-    const codeHTML = highlight(String(children), language);
+    const codeHTML = highlight(String(children));
     return (
       <code
         dangerouslySetInnerHTML={{ __html: codeHTML }}
-        className={`bg-muted px-1 py-0.5 rounded text-sm font-mono ${className}`}
+        className={`bg-muted px-1 py-0.5 rounded text-sm font-mono ${classNameStr}`}
         data-language={language}
         {...props}
       />
