@@ -3,6 +3,7 @@ import { Jost } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
+import { Analytics } from "@vercel/analytics/next"
 //import { ConsoleGreeting } from "@/components/console-greeting";
 import { Footer } from "@/components/Footer";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
           {/* <ConsoleGreeting /> */}
           <Header />
           {children}
+          <Analytics/>
           <Footer />
         </ThemeProvider>
       </body>
