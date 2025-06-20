@@ -5,10 +5,25 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
+import { useEffect, useState } from "react";
 
 export function Header() {
   const pathname = usePathname();
-  const showNav = pathname !== "/";
+  const [onSubdomain, setOnSubdomain] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hostname = window.location.hostname;
+      const parts = hostname.split('.');
+      // A subdomain is assumed if there are more than 2 parts in the hostname,
+      // and it's not 'www'. 'localhost' is also not considered a subdomain.
+      if (parts.length > 2 && parts[0] !== 'www' && hostname !== 'localhost') {
+        setOnSubdomain(true);
+      }
+    }
+  }, []);
+
+  const showNav = pathname !== "/" || onSubdomain;
 
   return (
     <header className={cn("sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm")}>

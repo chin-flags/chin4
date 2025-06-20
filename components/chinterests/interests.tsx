@@ -6,10 +6,30 @@ export default function Interests() {
   return (
     <section className="mb-16 max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="col-span-1 h-full md:col-span-2 flex">
+        <div className="col-span-1 h-full md:col-span-2 flex flex-col md:flex-row">
           <Card className="h-full flex-1">
-            <CardContent className="flex flex-row gap-6 h-full relative p-0">
-              <div className="flex flex-col flex-1 py-6 pl-6">
+            <CardContent className="flex flex-col md:flex-row gap-6 h-full relative p-0">
+              <div className="w-full h-48 md:w-64 md:h-64 relative flex-shrink-0 order-0 md:order-none">
+                <div className="block md:hidden w-full h-full">
+                  <Image
+                    src="/chin-writer-sm.png"
+                    alt="writer banner"
+                    fill
+                    className="object-cover aspect-[2/1] rounded-md"
+                    priority
+                  />
+                </div>
+                <div className="hidden md:block w-full h-full">
+                  <Image
+                    src="/chin-writer.png"
+                    alt="writer banner"
+                    fill
+                    className="object-contain aspect-square rounded-md"
+                    priority
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col flex-1 py-6 px-6 order-1 md:order-none">
                 <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                   Writing stuff
                 </h3>
@@ -40,15 +60,6 @@ export default function Interests() {
                   </p>
                 </div>
               </div>
-              <div className="w-64 h-64 relative">
-                <Image
-                  src="/chin-writer.png"
-                  alt="writer banner"
-                  fill
-                  className="object-contain aspect-square rounded-md"
-                  priority
-                />
-              </div>
             </CardContent>
           </Card>
         </div>
@@ -73,19 +84,19 @@ export default function Interests() {
             </p>
           </CardContent>
         </Card>
-        <div className="col-span-1 h-full md:col-span-2 flex">
+        <div className="col-span-1 h-full md:col-span-2 flex flex-col md:flex-row">
           <Card className="h-full flex-1">
-            <CardContent className="flex flex-row gap-6 h-full relative p-0">
-              <div className="w-64 h-64 relative">
+            <CardContent className="flex flex-col md:flex-row gap-6 h-full relative p-0">
+              <div className="w-full h-48 md:w-64 md:h-64 relative flex-shrink-0 order-0 md:order-none">
                 <Image
                   src="/chin-code.jpg"
                   alt="writer banner"
                   fill
-                  className="object-contain aspect-square rounded-md"
+                  className="object-cover md:object-contain aspect-[2/1] md:aspect-square rounded-md"
                   priority
                 />
               </div>
-              <div className="flex flex-col flex-1 py-6 pr-6">
+              <div className="flex flex-col flex-1 py-6 px-6 order-1 md:order-none">
                 <div className="text-muted-foreground text-md sm:text-lg leading-relaxed mb-4">
                   <h3 className="text-lg sm:text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                     Building Full stack web apps
