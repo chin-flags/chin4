@@ -1,0 +1,14 @@
+{
+    "rewrites": [
+      {
+        "source": "/:path*",
+        "has": [
+          {
+            "type": "host",
+            "value": "sket.chin4.com"
+          }
+        ],
+        "destination": "/sketchin/:path*"
+      }
+    ]
+  }
