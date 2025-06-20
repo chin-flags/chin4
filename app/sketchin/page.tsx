@@ -1,6 +1,11 @@
 import { ContentCategory, getSketchinPosts } from "@/lib/content";
 import { GenericPostGrid } from "@/components/ui/generic-post-grid";
 import SectionHeaderPostChin from "@/components/ui/section-header-post-chin";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sketchin - a blog",
+};
 
 export default async function BlogPage() {
   const posts = await getSketchinPosts();

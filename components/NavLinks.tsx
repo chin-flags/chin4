@@ -19,13 +19,14 @@ interface NavLinksProps {
   position?: "left" | "right";
 }
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const leftNavItems: NavItem[] = [
   { href: "#reach", text: "rea" },
-  { 
-    href: "https://sket.chin4.com", 
+  {
+    href: isProduction ? "https://sket.chin4.com" : "/sketchin",
     text: "sket",
-    icon: ExternalLinkIcon,
-    iconPosition: "left"
+    icon: ExternalLinkIcon, iconPosition: "left" ,
   },
 ];
 

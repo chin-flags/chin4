@@ -14,7 +14,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Chin4",
+  title: "Chin",
   description: "Chin's personal website",
   metadataBase: new URL("https://chin4.com"), // Important for absolute URLs
   openGraph: {
