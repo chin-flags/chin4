@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <div className="mt-12 text-center text-muted-foreground text-sm py-8">
+    <div className="mt-12 text-center text-muted-foreground text-sm px-2 py-8">
       <p>No LLMs were harmed in the making of this app.</p>
       <p>
         Chin&apos;s logo, I mean{" "}
