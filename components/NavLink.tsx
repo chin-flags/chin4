@@ -60,7 +60,7 @@ export default function NavLink({
       href={href}
       target="_new"
       onClick={handleClick}
-      className="group flex items-center gap-2 hover:text-orange-500 dark:hover:text-yellow-400 transition-colors font-jost duration-300"
+      className="group flex items-center gap-2 hover:text-wabi-earth transition-colors font-jost duration-300"
       onMouseEnter={() => setHoveredNav(text)}
       onMouseLeave={() => setHoveredNav(null)}
     >

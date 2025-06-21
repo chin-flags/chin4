@@ -27,8 +27,8 @@ export default function Home() {
     <div className="flex flex-col items-center min-h-screen p-0 sm:p-8 pt-0 pb-12 sm:pb-20 gap-8 sm:gap-16 font-[family-name:var(--font-geist-sans)]  text-foreground transition-colors duration-300">
       <TitleMessage messages={messages} />
 
-      <main className="flex flex-col -mt-20 items-center justify-center w-full h-screen max-w-6xl mx-auto">
-        <div className="flex flex-col items-center ">
+      <main className="flex flex-col -mt-20 items-center justify-center w-full h-screen max-w-6xl mx-auto relative">
+        <div className="flex flex-col items-center">
           <motion.div
             initial={
               shouldAnimate
@@ -43,7 +43,7 @@ export default function Home() {
             className="relative w-56 h-56 mb-4"
           >
             <Image
-              src="/chin1.png"
+              src="/images/chin-logo.png"
               alt="Profile image"
               fill
               className="object-contain"

@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./theme-toggle";
 import { useEffect, useState } from "react";
 
 export function Header() {
@@ -46,9 +45,9 @@ export function Header() {
             </Link>
           )}
         </nav>
-        <div className="w-36 flex justify-end">
+        {/* <div className="w-36 flex justify-end">
           <ThemeToggle />
-        </div>
+        </div> */}
       </div>
     </header>
   );

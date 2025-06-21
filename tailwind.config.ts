@@ -80,6 +80,12 @@ export default {
           secondary: "hsl(var(--surface-secondary))",
           tertiary: "hsl(var(--surface-tertiary))",
         },
+        wabi: {
+          light: "#F3D89D",
+          mid: "#D4A857",
+          earth: "#CC9C49",
+          deep: "#A27C2D",
+        },
       },
       keyframes: {
         "animate-rigth": {

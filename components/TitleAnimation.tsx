@@ -23,7 +23,7 @@ export default function TitleAnimation({ shouldAnimate = true, hoveredNav }: Tit
         className="text-[84px] sm:text-[120px] md:text-[150px] font-extrabold leading-none tracking-tight font-jost"
       >
         <motion.span 
-          className={`inline-block transition-colors duration-300 ${isLeftNavHovered ? 'text-orange-500 dark:text-yellow-300' : ''}`}
+          className={`inline-block transition-colors duration-300 ${isLeftNavHovered ? 'text-wabi-earth' : ''}`}
         >
           <motion.span
             className="inline-block"
@@ -46,7 +46,7 @@ export default function TitleAnimation({ shouldAnimate = true, hoveredNav }: Tit
           </motion.span>
         </motion.span>
         <motion.span 
-          className={`inline-block transition-colors duration-300 ${hoveredNav ? 'text-orange-500 dark:text-yellow-300' : ''}`}
+          className={`inline-block transition-colors duration-300 ${hoveredNav ? 'text-wabi-earth' : ''}`}
         >
           <motion.span
             className="inline-block"

@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { Jost } from "next/font/google";
+import { Comic_Neue } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next"
 import { Header } from "@/components/header";
+import { Footer } from "@/components/Footer";
 
-const jost = Jost({
-  variable: "--font-jost",
+const jost = Comic_Neue({
+  variable: "--font-patric",
   subsets: ["latin"],
-  weight: ["400", "800"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
   title: "Chin",
   description: "Chin's personal website",
-  metadataBase: new URL("https://chin4.com"), // Important for absolute URLs
+  metadataBase: new URL("https://chin4.com"),
   openGraph: {
     title: "Chin",
     description: "Chin's personal website",
@@ -40,7 +41,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} bg-background font-jost antialiased`}>
+      <body className={`${jost.variable} bg-background font-jost antialiased relative`}>
+      
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -49,6 +51,7 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Footer/>
           <Analytics/>
         </ThemeProvider>
       </body>

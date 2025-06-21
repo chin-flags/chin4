@@ -20,7 +20,7 @@ export default function SectionHeader({
             duration: 0.5,
             ease: [0.48, 0.15, 0.25, 0.96],
           }}
-          className="inline-block text-[#FFC107] text-warning"
+          className="inline-block text-wabi-earth text-warning"
         >
           Ch
         </motion.span>
@@ -32,7 +32,7 @@ export default function SectionHeader({
             duration: 0.5,
             ease: [0.48, 0.15, 0.25, 0.96],
           }}
-          className="inline-block text-primary"
+          className="inline-block text-foreground "
         >
           {title}
         </motion.span>

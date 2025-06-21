@@ -18,12 +18,12 @@ interface GenericPostCardProps {
 export function GenericPostCard({ post, basePath }: GenericPostCardProps) {
 
   return (
-    <article className="group relative ounded-xl p-3">
+    <article className="group relative rounded-xl p-3">
       <Link href={`${basePath}/${post.slug}`} className="space-y-4 block">
         <div className="space-y-2">
           <div className="flex justify-between items-start gap-4">
-            <div className="space-y-1">
-              <h2 className="text-xl sm:text-xl text-foreground hover:text-yello-800 dark:hover:text-yellow-400 transition-colors duration-200">
+            <div className="space-y-1 border-l-4 border-slate-200 dark:border-slate-800 pl-4">
+              <h2 className="text-xl sm:text-xl text-foreground hover:text-yellow-800 dark:hover:text-yellow-400 transition-colors duration-200">
                 {post.title}
               </h2>
               {post.subtitle && (

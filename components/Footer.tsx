@@ -9,7 +9,7 @@ export function Footer() {
         Chin&apos;s logo, I mean{" "}
         <span className="inline-flex items-center gap-2">
           this 
-          <Image src="/chin1.png" width={24} height={24} alt="Chin's logo" />
+          <Image src="/images/chin-logo.png" width={24} height={24} alt="Chin's logo" />
         </span>{" "}
         , was crafted by a real human. Check out his work
         <a

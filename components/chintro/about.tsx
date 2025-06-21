@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function About() {
   return (
     <section className="mb-16">
-      <div className="text-lg sm:text-lg text-foreground text-justify space-y-4">
+      <div className="text-xl sm:text-xl text-foreground text-justify space-y-4">
         <p>
           The most challenging question in an interview isn&apos;t about
           algorithms it&apos;s &quot;Tell me about yourself.&quot;
@@ -36,7 +36,7 @@ export default function About() {
           <Link
             href="/sketchin/from-nuts-and-bolts-to-ones-zeros"
             target="_new"
-            className="text-[#FFC107] dark:text-yellow-400 font-bold ml-1 hover:underline"
+            className="text-wabi-earth font-bold ml-1 hover:underline"
           >
             Read the full story
           </Link>
