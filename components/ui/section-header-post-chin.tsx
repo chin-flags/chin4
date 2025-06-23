@@ -46,7 +46,7 @@ export default function SectionHeaderPostChin({
             duration: 0.5,
             ease: [0.48, 0.15, 0.25, 0.96],
           }}
-          className="text-lg sm:text-xl text-primary"
+          className="text-lg sm:text-xl text-wabi-mid"
         >
           {subheader}
         </motion.p>

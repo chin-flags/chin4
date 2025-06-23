@@ -3,7 +3,6 @@ import { Comic_Neue } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next"
-import { Header } from "@/components/header";
 import { Footer } from "@/components/Footer";
 
 const jost = Comic_Neue({
@@ -41,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} bg-background font-jost antialiased relative`}>
+      <body className={`${jost.variable} bg-[url(/images/nnnoise.svg)] font-jost antialiased relative`}>
       
         <ThemeProvider
           attribute="class"
@@ -49,7 +48,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
           {children}
           <Footer/>
           <Analytics/>

@@ -124,7 +124,7 @@ export const mdxComponents = {
         width={width}
         height={height}
         {...props} 
-        className="rounded-lg shadow-lg max-w-full h-auto border border-border mx-auto my-8 block"
+        className="rounded-2xl shadow-lg max-w-full h-auto border border-border mx-auto my-8 block"
         style={{ maxWidth: '100%', height: 'auto' }}
       />
     )

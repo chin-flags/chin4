@@ -73,11 +73,11 @@ export default function Home() {
             delay={1.2}
             initialY={10}
             shouldAnimate={shouldAnimate}
-            className="text-xl sm:text-2xl italic font-bold mt-4 px-2 sm:px-4 max-w-[600px] leading-tight text-center text-text-secondary"
+            className="text-xl sm:text-2xl italic font-bold mt-4 px-2 sm:px-4 max-w-[600px] leading-tight text-center text-wabi-earth"
             initialOpacity={0}
           >
             codes, writes and says
-            <span className="font-mono text-sm sm:text-xl ml-2 font-bold text-success not-italic opacity-70 block sm:inline">{`//hacky but works`}</span>
+            <span className="font-mono text-sm sm:text-xl ml-2 font-bold text-green-300 not-italic block sm:inline">{`//hacky but works`}</span>
           </MotionText>
         </div>
       </main>

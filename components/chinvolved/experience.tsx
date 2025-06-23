@@ -50,7 +50,7 @@ export default function Experience() {
         {experiences.map((experience, index) => (
           <div 
             key={index}
-            className="group flex items-start gap-1 p-3 pl-0 hover:bg-accent/5 rounded-lg transition-colors duration-300"
+            className="group flex items-start gap-1 p-4 hover:bg-accent/5 rounded-lg transition-colors duration-300"
           >
             <div>
               <div className="flex justify-between items-start mb-1">

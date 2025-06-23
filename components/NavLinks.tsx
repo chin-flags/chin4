@@ -33,7 +33,7 @@ export default function NavLinks({
       text: "sket",
       icon: ExternalLinkIcon,
       iconPosition: "left",
-      tooltip: "Bolg"
+      tooltip: "Blog"
     },
   ];
 

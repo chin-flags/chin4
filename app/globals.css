@@ -32,13 +32,13 @@ body {
     --ring: 38 65% 45%;                 /* Ochre soft yellow */
 
     /* Semantic colors */
-    --success: 95 30% 35%;              /* Muted moss green */
+    --success: 95 30% 25%;              /* Muted moss green */
     --success-foreground: 40 20% 95%;   /* Pale cream */
     --success-hover: 95 35% 40%;
-    --warning: 38 80% 52%;              /* Warm mustard */
+    --warning: 38 80% 38%;              /* Warm mustard */
     --warning-foreground: 40 20% 95%;
     --warning-hover: 38 80% 47%;
-    --info: 210 40% 55%;                /* Soft slate blue */
+    --info: 210 40% 38%;                /* Soft slate blue */
     --info-foreground: 40 20% 95%;
     --info-hover: 210 40% 50%;
 
@@ -62,8 +62,8 @@ body {
 
     /* Content colors */
     --text-primary: var(--foreground);
-    --text-secondary: 35 25% 40%;
-    --text-tertiary: 35 25% 55%;
+    --text-secondary: 35 25% 28%;
+    --text-tertiary: 35 25% 38%;
     --text-hover: 35 25% 20%;
 
     /* Surface layers */
@@ -96,13 +96,13 @@ body {
     --input: 38 60% 20%;                /* Deep ochre */
     --ring: 42 70% 50%;                 /* Mustard */
 
-    --success: 95 35% 45%;              /* Moss green */
+    --success: 95 35% 30%;              /* Moss green */
     --success-foreground: 35 20% 12%;   /* Dark warm brown */
     --success-hover: 95 40% 50%;
-    --warning: 38 80% 60%;              /* Warm mustard */
+    --warning: 38 80% 45%;              /* Warm mustard */
     --warning-foreground: 35 20% 12%;
     --warning-hover: 38 80% 65%;
-    --info: 210 40% 65%;                /* Slate blue */
+    --info: 210 40% 45%;                /* Slate blue */
     --info-foreground: 35 20% 12%;
     --info-hover: 210 40% 70%;
 
@@ -126,8 +126,8 @@ body {
 
     /* Content */
     --text-primary: var(--foreground);
-    --text-secondary: 35 25% 65%;
-    --text-tertiary: 35 25% 55%;
+    --text-secondary: 35 25% 45%;
+    --text-tertiary: 35 25% 35%;
     --text-hover: 40 20% 100%;
 
     /* Surfaces */

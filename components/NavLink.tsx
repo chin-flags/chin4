@@ -58,7 +58,7 @@ export default function NavLink({
   const linkElement = (
     <Link
       href={href}
-      target="_new"
+      target="_blank"
       onClick={handleClick}
       className="group flex items-center gap-2 hover:text-wabi-earth transition-colors font-jost duration-300"
       onMouseEnter={() => setHoveredNav(text)}

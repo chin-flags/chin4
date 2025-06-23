@@ -16,7 +16,7 @@ export default function Contact() {
         href="https://twitter.com/chin_flags"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center space-x-2 text-text-secondary hover:text-info-hover transition-colors text-sm sm:text-base"
+        className="flex items-center space-x-2 text-foreground hover:text-info-hover transition-colors text-sm sm:text-base"
       >
         <FaTwitter className="text-lg sm:text-xl" />
         <span>Twitter</span>
@@ -25,7 +25,7 @@ export default function Contact() {
         href="https://linkedin.com/in/chinthaka-weerakkody/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center space-x-2 text-text-secondary hover:text-info-hover transition-colors text-sm sm:text-base"
+        className="flex items-center space-x-2 text-foreground hover:text-info-hover transition-colors text-sm sm:text-base"
       >
         <FaLinkedin className="text-lg sm:text-xl" />
         <span>LinkedIn</span>
@@ -34,7 +34,7 @@ export default function Contact() {
         href="https://github.com/chin-flags"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center space-x-2 text-text-secondary hover:text-info-hover transition-colors text-sm sm:text-base"
+        className="flex items-center space-x-2 text-foreground hover:text-info-hover transition-colors text-sm sm:text-base"
       >
         <FaGithub className="text-lg sm:text-xl" />
         <span>GitHub</span>
@@ -43,7 +43,7 @@ export default function Contact() {
         href="https://t.me/chinflags"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center space-x-2 text-text-secondary hover:text-info-hover transition-colors text-sm sm:text-base"
+        className="flex items-center space-x-2 text-foreground hover:text-info-hover transition-colors text-sm sm:text-base"
       >
         <FaTelegram className="text-lg sm:text-xl" />
         <span>Telegram</span>
@@ -52,7 +52,7 @@ export default function Contact() {
         href="https://discord.com/users/chin_flags"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center space-x-2 text-text-secondary hover:text-indigo-400 transition-colors text-sm sm:text-base"
+        className="flex items-center space-x-2 text-foreground hover:text-indigo-400 transition-colors text-sm sm:text-base"
       >
         <FaDiscord className="text-lg sm:text-xl" />
         <span>Discord</span>
@@ -64,7 +64,7 @@ export default function Contact() {
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
         }}
-        className="flex items-center space-x-2 text-text-secondary hover:text-success-hover transition-colors text-sm sm:text-base focus:outline-none"
+        className="flex items-center space-x-2 text-foreground hover:text-success-hover transition-colors text-sm sm:text-base focus:outline-none"
       >
         <FaEnvelope className="text-lg sm:text-xl" />
         <span>{copied ? "Copied!" : "Email"}</span>

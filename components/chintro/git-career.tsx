@@ -387,7 +387,7 @@ export default function GitCareer() {
               <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-warning"></div>
               <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-success"></div>
             </div>
-            <span className="text-text-secondary text-xs sm:text-sm ml-2 sm:ml-4">
+            <span className="text-secondary text-xs sm:text-sm ml-2 sm:ml-4">
               Terminal — chin@life-story
             </span>
           </div>
@@ -459,7 +459,7 @@ export default function GitCareer() {
                       {commit.hash.substring(0, 7)}
                     </div>
                     <div className="flex-1">
-                      <p className="text-success mb-0.5 sm:mb-1 text-sm sm:text-base break-words">
+                      <p className="text-foreground mb-0.5 sm:mb-1 text-md sm:text-base break-words">
                         {commit.message}
                       </p>
                       <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-text-tertiary gap-0.5 sm:gap-0">
@@ -511,7 +511,7 @@ export default function GitCareer() {
         </div>
       </div>
       {/* Footer Note outside the container */}
-      <div className="mt-2  text-md text-text-tertiary italic">
+      <div className="mt-2  text-md text-wabi-earth italic">
         Apologies, non-tech folks. That thing above mimics something called Git
         log, where software developers document their mistakes and
         regrets when making software

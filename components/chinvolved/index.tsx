@@ -21,7 +21,7 @@ export default function Chinfield() {
   return (
     <section
       id="chinvolved"
-      className="w-full max-w-4xl mx-auto px-4 py-5 sm:px-6 lg:px-8 relative z-10 bg-background min-h-screen snap-start"
+      className="w-full max-w-4xl mx-auto px-4 py-5 sm:px-6 lg:px-8 relative opacity-70 rounded-3xl z-10 bg-background min-h-screen snap-start"
     >
       <main className="max-w-4xl mx-auto px-4 py-5 sm:px-6 lg:px-8">
         <SectionHeader title="involved" />
