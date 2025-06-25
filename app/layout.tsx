@@ -13,11 +13,11 @@ const jost = Comic_Neue({
 
 export const metadata: Metadata = {
   title: "Chin",
-  description: "Chin's personal website",
+  description: "Chin's very personal website",
   metadataBase: new URL("https://chin4.com"),
   openGraph: {
     title: "Chin",
-    description: "Chin's personal website",
+    description: "Chin's very personal website",
     url: "https://chin4.com",
     siteName: "Chin4",
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: "/chin-og.png",
         width: 1200,
         height: 630,
-        alt: "My Awesome App Logo",
+        alt: "chin image",
       },
     ],
     locale: "en_US",
