@@ -7,10 +7,15 @@ import BlogLayout from "@/components/blog/BlogLayout";
 import BlogHeader from "@/components/blog/BlogHeader";
 import { mdxComponents } from "@/components/blog/MDXComponents";
 import { getMDXContent } from "@/lib/mdx-utils";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
+
+export const metadata: Metadata = {
+  title: "Sketchin - a blog",
+};
 
 export default async function Page({ params }: PageProps) {
   try {

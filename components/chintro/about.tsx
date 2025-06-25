@@ -17,13 +17,21 @@ export default function About() {
           standard version
         </p>
         <p>
-          My name is{" "}
-          <span className="font-bold">
-            Chinthaka
-          </span>
-          , it means “philosopher” or “thinker” in my language, Sinhala. I like
-          to think I live up to that… especially when I lose something or mess
-          things up.
+          My name is <span className="font-bold">Chinthaka</span>, it means
+          “philosopher” or “thinker” in my language,{" "}
+          <Link
+            href="https://en.wikipedia.org/wiki/Sinhala_language"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-wabi-earth font-bold hover:underline"
+          >
+            Sinhala
+          </Link>
+          .
+        </p>
+        <p>
+          I like to think I live up to that… especially when I lose something or
+          mess things up.
         </p>
         <p>
           These days, I ask computers to do things for me using code and I get

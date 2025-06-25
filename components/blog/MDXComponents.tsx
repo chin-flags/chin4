@@ -136,7 +136,7 @@ export const mdxComponents = {
     </h1>
   ),
   h2: ({ children, ...props }: { children: ReactNode; [key: string]: unknown }) => (
-    <h2 {...props} className="text-3xl font-semibold mt-8 mb-4 text-foreground">
+    <h2 {...props} className="text-3xl font-semibold mt-8 mb-12 text-foreground">
       {children}
     </h2>
   ),
@@ -187,7 +187,7 @@ export const mdxComponents = {
     <a 
       href={href} 
       {...props} 
-      className="text-foreground hover:text-orange-500 dark:hover:text-yellow-400 transition-colors"
+      className="text-foreground hover:text-yellow-400 text-wabi-earth transition-colors"
       target={href?.startsWith('http') ? '_blank' : undefined}
       rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
     >

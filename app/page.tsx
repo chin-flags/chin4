@@ -42,6 +42,16 @@ export default function Home() {
             }}
             className="relative w-56 h-56 mb-4"
           >
+            {/* <div className="absolute -top-32 -left-80 w-72 h-72 sm:w-84 sm:h-84 z-10">
+              <Image
+                src="/images/stains.png"
+                alt="Stains decoration"
+                fill
+                className="object-contain"
+                sizes="(max-width: 1200px) 200px, 200px"
+              />
+            </div>
+             */}
             <Image
               src="/images/chin-logo.png"
               alt="Profile image"
