@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Chin4",
     images: [
       {
-        url: "/chin-og.png",
+        url: "https://www.chin4.com/chin-og.png",
         width: 1200,
         height: 630,
         alt: "chin image",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     creator: "@chin_flags",
     images: [
       {
-        url: "/chin-og.png",
+        url: "https://www.chin4.com/chin-og.png",
         alt: "chin image",
       },
     ],
