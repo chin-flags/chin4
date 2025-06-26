@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Comic_Neue } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import { Footer } from "@/components/Footer";
 
 const jost = Comic_Neue({
@@ -31,6 +31,19 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chin",
+    description: "Chin's very personal website",
+    site: "@chin_flags",
+    creator: "@chin_flags",
+    images: [
+      {
+        url: "/chin-og.png",
+        alt: "chin image",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -40,8 +53,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${jost.variable} bg-[url(/images/nnnoise.svg)] font-jost antialiased relative`}>
-      
+      <body
+        className={`${jost.variable} bg-[url(/images/nnnoise.svg)] font-jost antialiased relative`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -49,8 +63,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <Footer/>
-          <Analytics/>
+          <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
