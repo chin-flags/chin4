@@ -118,7 +118,7 @@ export default function GitCareer() {
       },
       {
         date: "May 20, 2013",
-        message: "Switched to natural gas + healthcare. From bras to bars",
+        message: "Switched to industrial gas + healthcare. From bras to bars",
         author: "chin",
         hash: "p4q567",
       },
